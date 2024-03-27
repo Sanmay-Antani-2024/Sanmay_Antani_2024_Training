@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>       
+        function showClicked(){
+            var objf1=document.getElementById('tableFormSID');
+            var obj=document.getElementById('show');
+            objf1.setAttribute("hidden","true");
+            obj.setAttribute("hidden","true");
+            var objf2=document.getElementById('tableFormFilter');
+            objf2.removeAttribute("hidden");
+        }
+    </script>
+        <center><h3>Name:Sanmay Antani</br>Employee ID:24DEV037<br/>Date:05-03-2024</h3></center>        
+    <table align="center" id="tableFormSID">
+        <tr>
+            <td>
+                Stuednt ID:
+            </td>
+            <td>
+                <form id="formSID" method="get">
+                    <select name="selSID">
+                        <% for(let i=0;i<sidRes.length;i++){%>
+                            <%if(sid!=undefined){%>
+                                <%if(sid==sidRes[i].stID){%>
+                                    <option value="<%=sidRes[i].stID%>" selected><%=sidRes[i].stID%></option>
+                                <%}else{%>
+                                    <option value="<%=sidRes[i].stID%>"><%=sidRes[i].stID%></option>
+                                <%}%>
+                            <%}else{%>
+                                <option value="<%=sidRes[i].stID%>"><%=sidRes[i].stID%></option>
+                            <%}%>
+                        <%}%>
+                    </select>   
+                    <input type="submit" value="Go"/>                 
+                </form>
+            </td>
+        </tr>
+    </table>
+    <p style="margin: 0 auto; cursor: pointer; text-align: center;" id="show" onClick="showClicked()">Show more</p>
+    <table align="center" id="tableFormFilter" hidden>
+            <form id="formSID" method="get" >
+            <tr>
+                <th>
+                    Name
+                </th>
+                <td>
+                    <%if(studentN==undefined){%>
+                        <input type="text" name="filterSname"/>
+                    <%}else{%>
+                        <input type="text" value="<%=studentN%>" name="filterSname"/>
+                    <%}%>
+                </td>
+                <th>Month</th>
+                <td>
+                    <select name="selMonth">
+                        <%if(selMonth=='12'){%>
+                            <option value="12" selected>December 2023</option>
+                        <%}else{%>
+                            <option value="12">December 2023</option>
+                        <%}%>
+                        <%if(selMonth=='1'){%>
+                            <option value="1" selected>January 2023</option>
+                        <%}else{%>
+                            <option value="1">January 2023</option>
+                        <%}%>
+                        <%if(selMonth=='2'){%>
+                            <option value="2" selected>February 2023</option>
+                        <%}else{%>
+                            <option value="2">February 2023</option>
+                        <%}%>                                
+                    </select>        
+                    <input type="hidden" name="pageID" value="1"/>
+                </td>   
+                <th>Present Days:</th>
+                <td>
+                    <%if(pDf==undefined){%>
+                        <input type="text" name="filterPresentDayFrom" />-<input type="text"    name="filterPresentDayTo"/>
+                    <%}else{%>
+                        <input type="text" name="filterPresentDayFrom" value="<%=pDf%>"/>-<input type="text" value="<%=pDt%>" name="filterPresentDayTo"/>
+                    <%}%>
+                    
+                </td>
+                <th>Present %:</th>
+                <td>
+                    <%if(pPf==undefined){%>
+                        <input type="text" name="filterPresentPerFrom" />-<input type="text" name="filterPresentPerTo"/>
+                    <%}else{%>
+                        <input type="text" name="filterPresentPerFrom" value="<%=pPf%>"/>-<input type="text" value="<%=pPt%>" name="filterPresentPerTo"/>
+                    <%}%>                    
+                </td>
+                <th>
+                    And/OR
+                </th> 
+                <td>
+                    <select name="selAndOr">
+                        <option value="and">And</option>
+                    </select>
+                </td>                
+                <td>
+                    <input type="submit" value="Go"/>
+                </td>
+            </tr>
+            </form>
+    </table>
+    <%let name=studentN%>
+        <%if(name!=undefined){%>
+            <script>
+                 showClicked();
+            </script>
+        <%}%>
+    <table border="1" width="30%" align="center">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Present Days</th>
+            <th>Present %</th>
+        </tr>
+        <% for(let i=0;i<s.length;i++){ %>
+            <tr>
+                <td><%=s[i].id%></td>
+                <td><%=s[i].name%></td>
+                <td><%=s[i].pdays%></td>
+                <td><%=s[i].percent.toFixed(2)%>%</td>
+            </tr>
+        <%}%>
+    </table>
+    <%if(studentN==undefined && andor==undefined){%>
+        <table align="center" style="text-align: center;">
+            <tr>                        
+                <td><a href="/filter?pageID=1&selMonth=<%=selMonth%>"><<</a></td>
+                <% if(PID==1){%>
+                    <td><</td>                        
+                <%}else{%>  
+                    <td><a href="/filter?pageID=<%=parseInt(PID)-1%>&selMonth=<%=selMonth%>"><</a></td>
+                <%}%>
+                <td style="border-style: solid; border-width: 1px;"><%= PID%></td>
+                <%let lastPage=parseInt((resLen/20).toFixed(0))%>
+                <%if(lastPage<1){%>
+                    <%lastPage=1%>
+                <%}%>
+                <% if(PID==lastPage){%>
+                    <td>></td>
+                <%}else{%>
+                    <td><a href="/filter?pageID=<%=parseInt(PID)+1 %>&selMonth=<%=selMonth%>">></a></td>
+                <%}%>            
+                <td><a href="/filter?pageID=<%=lastPage%>&selMonth=<%=selMonth%>">>></a></td>            
+            </tr>
+        </table>
+    <%}else{%>    
+        <table align="center" style="text-align: center;">
+            <tr>                        
+                <td><a href="/filter?pageID=1&selMonth=<%=selMonth%>&filterSname=<%=studentN%>&filterPresentDayFrom=<%=pDf%>&filterPresentDayTo=<%=pDt%>&filterPresentPerFrom=<%=pPf%>&filterPresentPerTo=<%=pPt%>&selAndOr=<%=andor%>"><<</a></td>
+                <% if(PID==1){%>
+                    <td><</td>                        
+                <%}else{%>  
+                    <td><a href="/filter?pageID=<%=parseInt(PID)-1%>&selMonth=<%=selMonth%>&filterSname=<%=studentN%>&filterPresentDayFrom=<%=pDf%>&filterPresentDayTo=<%=pDt%>&filterPresentPerFrom=<%=pPf%>&filterPresentPerTo=<%=pPt%>&selAndOr=<%=andor%>"><</a></td>
+                <%}%>
+                <td style="border-style: solid; border-width: 1px;"><%= PID%></td>
+                <%let lastPage=parseInt((resLen/20).toFixed(0))%>
+                <%if(lastPage<1){%>
+                    <%lastPage=1%>
+                <%}%>
+                <% if(PID==lastPage){%>
+                    <td>></td>
+                <%}else{%>
+                    <td><a href="/filter?pageID=<%=parseInt(PID)+1 %>&selMonth=<%=selMonth%>&filterSname=<%=studentN%>&filterPresentDayFrom=<%=pDf%>&filterPresentDayTo=<%=pDt%>&filterPresentPerFrom=<%=pPf%>&filterPresentPerTo=<%=pPt%>&selAndOr=<%=andor%>">></a></td>
+                <%}%>            
+                <td><a href="/filter?pageID=<%=lastPage%>&selMonth=<%=selMonth%>&filterSname=<%=studentN%>&filterPresentDayFrom=<%=pDf%>&filterPresentDayTo=<%=pDt%>&filterPresentPerFrom=<%=pPf%>&filterPresentPerTo=<%=pPt%>&selAndOr=<%=andor%>">>></a></td>            
+            </tr>
+        </table>
+    <%}%>
+</body>
+</html>

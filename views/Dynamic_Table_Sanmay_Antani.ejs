@@ -1,0 +1,87 @@
+<html>
+    <body style="color:gray;">
+        <!-- link of loom video -->
+        <!-- https://www.loom.com/share/2a75cfdbd07c4caa9d203f38cde64ed2?sid=b93dfb60-30d1-4a7a-91f4-7e27909ba9b5 -->
+        <center><H1>Sanmay Antani <br/>Employee ID: 24DEV037</H1></center>
+        <style>
+            #odd{
+                background-color:rgb(32, 176, 243);
+            }
+            #even{
+                background-color: cadetblue;
+            }     
+        </style>
+        <script>  
+            function removeRow(){
+                var rows=document.getElementsByClassName('rows');
+                var numrows=rows.length;
+                if(numrows>2){
+                var tabl=document.getElementById('tbl');
+                var lchild=tabl.lastChild;
+                tabl.removeChild(lchild);                
+                }
+            }         
+            function removeCollumn(){
+                var cols=document.getElementsByClassName('columns');
+                var rows=document.getElementsByClassName('rows');
+                var numrows=rows.length;
+                var colnums=cols.length;
+                if(colnums>2){
+                    for(i=0;i<numrows;i++){
+                        var lchild=rows[i].lastChild;
+                        rows[i].removeChild(lchild);                            
+                    }
+                }
+            }        
+            function addRow(){               
+                var tabl=document.getElementById('tbl');  
+                var row=document.createElement('tr');
+                row.setAttribute("class","rows");
+                tabl.appendChild(row);
+                var cols=document.getElementsByClassName('columns');
+                var colnums=cols.length;  
+                // alert(colnums);             
+                for(let i=0;i<colnums;i++){                                       
+                    var cell=document.createElement('td');  
+                    cell.innerHTML='HI';  
+                    cell.setAttribute("id","odd");                                  
+                    row.appendChild(cell);
+                    
+                }                 
+            }
+            function addCollumn()
+            {
+                var rowes=document.getElementsByClassName("rows");
+                var numrows=rowes.length;
+                for(let i=0;i<numrows;i++){
+                    if(i==0){
+                        var cell=document.createElement('td');
+                        cell.innerHTML='HI';
+                        cell.setAttribute("class","columns");
+                        cell.setAttribute("id","odd");
+                        rowes[i].appendChild(cell);
+                    }else{
+                    var cell=document.createElement('td');
+                    cell.innerHTML='HI';
+                    cell.setAttribute("id","odd");
+                    rowes[i].appendChild(cell);
+                    }
+                }   
+            }            
+        </script>        
+        For collumns: <span style="font-size: 25px;" style="cursor: pointer;" onclick="addCollumn()">+</span>
+        &nbsp;<span style="font-size: 25px;" style="cursor: pointer;" onclick="removeCollumn()">-</span>
+        <table height="10" class="tbl" id="tbl" style="width: auto;" border="1">
+            <tr class="rows">
+                <td class="columns" id="odd">HI</td>
+                <td id="even" style="height: 100%;width: 35px;">HI</td>                                
+            </tr>
+            <tr class="rows">
+                <td class="columns" id="even">HI</td> 
+                <td id="odd">HI</td>
+            </tr>            
+        </table>
+        <p>For rows:<br/><span style="font-size: 25px;" style="cursor: pointer;" onclick="addRow()">+</span><br/>
+        <span style="font-size: 50px;" style="cursor: pointer;" onclick="removeRow()" id="message">-</span></p>
+    </body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- loom video:
+    https://www.loom.com/share/6673775004f94d4e8f7b378072575e92?sid=c5a6e130-0042-4235-b949-9e804ccc4eaa -->
+    <center><h3>Name:Sanmay Antani</br>Employee ID:24DEV037<br/>Date:28-02-2024</h3></center>
+    <table width="60%" align="center" border="1">
+        <tr>
+            <th rowspan="2">Student Name</th>
+            <th colspan="2">Terminal Exam</th>
+            <th colspan="2">Primary Exam</th>
+            <th colspan="2">Final Exam</th>
+            <th rowspan="2">Total</th>
+        </tr>
+        <tr>     
+            <th>practical</th>
+            <th>Theory</th>
+            <th>practical</th>
+            <th>Theory</th>
+            <th>practical</th>
+            <th>Theory</th>           
+        </tr>
+        <%var sum=0%>
+        <%for(let i=0;i<s.length/6;i++){%>
+            <tr>
+                <td><%=s[i*6].name%></td>
+                <%for(let j=((i+1)*6)-1;j>=i*6;j--){%>
+                    <td><%=s[j].ObtainMarks%></td>
+                    <%sum=sum+parseInt(s[j].ObtainMarks)%>
+                <%}%>
+                <td><%=sum%></td>
+                <%sum=0%>
+                <td><a href="/reportCard?sid=<%=s[i*6].id%>&sname=<%=s[i*6].name%>">View Report Card</a></td>
+            </tr>
+        <%}%>
+    </table>
+    <table align="center" style="text-align: center;">
+        <tr>            
+            <td><a href="/result?pageID=1"><<</a></td>
+            <% if(PID==1){%>
+                <td><</td>                        
+            <%}else{%>  
+                <td><a href="/result?pageID=<%=parseInt(PID)-1%>"><</a></td>
+            <%}%>
+            <td style="border-style: solid; border-width: 1px;"><%= PID%></td>
+            <% if(PID==10){%>
+                <td>></td>
+            <%}else{%>
+                <td><a href="/result?pageID=<%=parseInt(PID)+1 %>">></a></td>
+            <%}%>            
+            <td><a href="/result?pageID=10">>></a></td>            
+        </tr>
+    </table>
+</body>
+</html>

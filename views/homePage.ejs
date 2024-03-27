@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3 id="Greet">Hello </h3>
+    <ul>
+        <li><a href="/DT">Dynamic Table</a></li>
+        <li><a href="/ET">Event Table</a></li>
+        <li><a href="/kookoo">Koo-Koo Cube</a></li>
+        <li><a href="/tictactoe">Tic-Tac-Toe</a></li>  
+        <li><a href="/delSearch">Delimeter Search</a></li>     
+        <li><a href="/result">Result Report</a></li>   
+        <li><a href="/sorting">Sorting With Filteration with pagination</a></li>
+        <li><a href="/filter">Searching With Filteration Panel with pagination</a></li> 
+        <li><a href="/jaf">Job Application Form</a></li> 
+    </ul>        
+    <script>
+        document.getElementById("Greet").innerHTML+=sessionStorage.getItem("user").Fname
+        console.log("at home Page",JSON.stringify(sessionStorage.getItem("user")))            
+    </script>
+</body>
+</html>
+<!-- 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 -->

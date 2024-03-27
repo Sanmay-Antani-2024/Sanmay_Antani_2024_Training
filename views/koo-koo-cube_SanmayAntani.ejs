@@ -1,0 +1,130 @@
+<html> 
+    <style>
+        td{
+            background-color: blue;            
+        }        
+    </style>   
+    <!-- link of loom video
+    https://www.loom.com/share/b8f130062e3a4a27a473e846c7124916?sid=d4f83204-4798-4364-be67-cb397aa01f9e -->
+    <body style="background-color: rgb(240, 240, 153);">
+        <center><H1>Sanmay Antani <br/>Employee ID: 24DEV037<br/>Date:02-02-2024</H1></center>
+        <center><H3>right selection gives you 1 point and wrong selection will deduct your 1 point</H3></center>
+        <center><span>Time:</span><span id="showTime">15</span></center>
+        <table id="tbl" border="1" width="500" height="500" align="center">
+            <tr class="row">
+                <td id="1" class="cell collumns" onclick="clicked(this)"></td>
+                <td id="2" class="cell collumns" onclick="clicked(this)"></td>                
+            </tr>
+            <tr class="row">
+                <td id="3" class="cell" onclick="clicked(this)" style="opacity: 21%;"></td>
+                <td id="4" class="cell" onclick="clicked(this)"></td>                
+            </tr>
+        </table>
+        <center>Score: <span id="score"></span></center>
+        <script>     
+            cnt=0;
+            oldID=3;
+            function clicked(thisobj){   
+                //count score
+                if(parseInt(thisobj.id)==oldID){
+                        cnt++;                
+                        document.getElementById('score').innerHTML=cnt;
+                    }else{
+                        cnt--;                
+                        document.getElementById('score').innerHTML=cnt;
+                    }
+                    
+    
+                //add row
+                    var tabl=document.getElementById('tbl');                                            
+                    var row=document.createElement('tr');
+                    row.setAttribute("class","row");
+                    tabl.appendChild(row);
+                    var cols=document.getElementsByClassName('collumns');
+                    var rows=document.getElementsByClassName('row');
+                    var cells=document.getElementsByClassName('cell');
+                    var colnums=cols.length;                       
+                    var cellnum=cells.length;
+    
+                    for(let i=0;i<colnums;i++){
+                        var cellid=parseInt(i)+parseInt(1)+parseInt(cellnum);                                                    
+                        var cell=document.createElement('td');     
+                        cell.setAttribute("onclick","clicked(this)"); 
+                        cell.setAttribute("class","cell"); 
+                        cell.setAttribute("id",cellid.toString());                                                                   
+                        row.appendChild(cell);                    
+                    }     
+                    
+                    //add column
+    
+                    var rowes=document.getElementsByClassName("row");
+                    var numrows=rowes.length;
+                    cells=document.getElementsByClassName('cell');
+                    cellnum=cells.length;
+                    for(let i=0;i<numrows;i++){
+                        if(i==0){
+                            var cellid=parseInt(i)+parseInt(1)+parseInt(cellnum);  
+                            var cell=document.createElement('td');                        
+                            cell.setAttribute("class","cell collumns"); 
+                            cell.setAttribute("onclick","clicked(this)");  
+                            cell.setAttribute("id",cellid.toString());                       
+                            rowes[i].appendChild(cell);
+                        }else{
+                        var cellid=parseInt(i)+parseInt(1)+parseInt(cellnum);  
+                        var cell=document.createElement('td');                  
+                        cell.setAttribute("onclick","clicked(this)");
+                        cell.setAttribute("class","cell"); 
+                        cell.setAttribute("id",cellid.toString());   
+                        rowes[i].appendChild(cell);
+                        }
+                    }           
+                    
+                    //change color randomly
+    
+                    randomR=Math.random() * (255 - 1) + 1;
+                    randomG=Math.random() * (255 - 1) + 1;
+                    randomB=Math.random() * (255 - 1) + 1;
+                    cells=document.getElementsByClassName('cell');
+                    cellnum=cells.length;           
+                    for(let i=0;i<cellnum;i++){
+                        cells[i].setAttribute("style","background-color:rgb("+randomR.toString()+","+randomG.toString()+","+randomB.toString());
+                    }
+    
+                    //change opacity of random cell
+    
+                    cells=document.getElementsByClassName('cell');
+                    cellnum=cells.length;
+                    for(let i=0;i<cellnum;i++){
+                        cells[i].style.opacity="100%";
+                    }
+                    randomId=Math.random() * (cellnum - 1) + 1;            
+                    var opac=parseInt(cellnum)+parseInt(10);
+                    if(opac<80){
+                        document.getElementById((Math.round(randomId)).toString()).style.opacity=(parseInt(cellnum)+parseInt(10)).toString()+"%";
+                    }else{
+                        document.getElementById((Math.round(randomId)).toString()).style.opacity=("80%");                
+                    }
+                    oldID=Math.round(randomId);
+                    //timer                
+                    // //show score       
+                    // console.log(thisobj.id+",");
+                    // console.log(Math.round(randomId));     
+                      //count down                             
+            }        
+            const intr=setInterval(countDown, 1000);   
+                setTimeout(gameOver,15000);
+                function countDown(){       
+                    var sec=document.getElementById("showTime");         
+                    var currsec=parseInt(sec.innerHTML);  
+                    console.log(currsec);                 
+                    var newsec=parseInt(currsec-1);                       
+                    sec.innerHTML=newsec.toString();            
+                }                        
+                function gameOver(){
+                    clearInterval(intr);
+                    alert("Game Over \n Your Score: "+cnt);
+                    window.location.reload();
+                }  
+        </script>  
+    </body>    
+</html>

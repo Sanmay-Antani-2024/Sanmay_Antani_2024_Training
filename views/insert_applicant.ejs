@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        fieldset{
+            background-color: rgb(255, 200, 129);
+        }
+        span{
+            color: red;
+            font-size: small;
+        }
+    </style>
+</head>
+<body>
+    <center><h3>Name:Sanmay Antani</br>Employee ID:24DEV037<br/>Date:21-03-2024</h3></center>
+    <div id="main_div" style="margin: 0 auto; width:fit-content;">
+        <form id="basic">
+            <fieldset id="bd">
+                <span style="color:red;">
+                    <ul id="errMsg">
+
+                    </ul>
+                </span>
+                <legend id="bd">Basic Detail</legend>    
+                <table>
+                    <tr>
+                        <td width="1">
+                            First Name:
+                        </td>  
+                        <td>
+                            <input type="text" name="txtFname" id="txtFname" /><br/>
+                            <span id="sptxtFname"></span>
+                        </td>                      
+                        <td>
+                            Last Name: 
+                        </td>
+                        <td>                        
+                            <input type="text" name="txtLname" id="txtLname" /><br/>
+                            <span id="sptxtLname"></span>
+                        </td>  
+                    </tr>
+                    <tr>
+                        <td>
+                            Designation: 
+                        </td>
+                        <td>
+                            <input type="text" name="txtDesig" id="txtDesig" /><br/>
+                            <span id="sptxtDesig"></span>
+                        </td>  
+                        <td>
+                            Address 1:<br/><br/>
+                            Address 2: 
+                        </td>
+                        <td>
+                            <textarea id="txtAdd1" name="txtAdd1"></textarea><br/>
+                            <span id="sptxtAdd1"></span><br/>
+                            <textarea id="txtAdd2" name="txtAdd2" ></textarea>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            Email: 
+                        </td>
+                        <td>
+                            <input type="text" id="txtEmail" name="txtEmail"/><br/>
+                            <span id="sptxtEmail"></span>
+                        </td>
+                        <td>
+                            City: 
+                        </td>
+                        <td>
+                            <input type="text" id="txtCity" name="txtCity"/><br/>
+                            <span id="sptxtCity"></span>
+                        </td>
+                    </tr>  
+                    <tr>
+                        <td>
+                            Phone Number: 
+                        </td>
+                        <td>
+                            <input type="text" id="txtPNumber" name="txtPNumber"/><br/>
+                            <span id="sptxtPNumber"></span>
+                        </td>
+                        <td>
+                            State: 
+                        </td>
+                        <td>
+                            <select id="selState" name="selState" >
+                                <option id="Gujarat" value="Gujarat">Gujarat</option>
+                                <option id="Maharashtra" value="Maharashtra">Maharashtra</option>
+                                </select><br/>                                
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Gender: 
+                        </td>
+                        <td>
+                        <input type="radio" value="M" class="M rdbGender" id="rdbGender" name="rdbGender"/> Male                            
+                        <input type="radio" value="F" class="F rdbGender" id="rdbGender" name="rdbGender"/> Female<br/>
+                        <span id="sprdbGender"></span>
+                        </td>
+                        <td>
+                            Zip code: 
+                        </td>
+                        <td>
+                            <input type="text" id="txtZip" name="txtZip"/><br/>
+                            <span id="sptxtZip"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            RelationShip Status:  
+                        </td>
+                        <td>
+                            <select id="RS" name="RS" >
+                                <option id="S" value="S">Single</option>
+                                <option id="M" value="M">Married</option>
+                            </select>
+                        </td>                                           
+                        <td>
+                            Date Of Birth: 
+                        </td>     
+                        <td>
+                            <input type="text" id="txtDOB" name="txtDOB"/><br/>
+                            <span id="sptxtDOB"></span>
+                        </td>
+                    </tr>          
+                </table>
+            </fieldset>    
+
+            <fieldset style="width:70%;" id="edu" hidden>
+                <legend>Education Detail</legend>
+                            <table width="96%">
+                                <tr>
+                                    <td colspan="6">
+                                        SSC result
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Name of board:
+                                    </td>
+                                    <td>
+                                        <select id="txtNobSSC" name="course[]" >
+                                            <option value="">Select Board</option>
+                                            <option id="GSEB0" value="GSEB">GSEB</option>
+                                            <option id="CBSE0" value="CBSE">CBSE</option>
+                                        </select><br/>
+                                        <span id="sptxtNobSSC"></span>
+                                    </td>
+                                    <td>
+                                        Passing Year:
+                                    </td>
+                                    <td>
+                                        <input type="text" id="numPYSSC" name="py[]" /><br/>
+                                        <span id="spnumPYSSC"></span>
+                                    </td>
+                                    <td>
+                                        Percentage:
+                                    </td>
+                                    <td>
+                                        <input type="text" id="numPerSSC" name="per[]" /><br/>
+                                        <span id="spnumPerSSC"></span>
+                                    </td>                        
+                                </tr>
+                                <tr>
+                                    <td colspan="6">
+                                        <hr/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="6">
+                                        HSC result
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Name of board:
+                                    </td>
+                                    <td>                         
+                                        <select id="txtNobHSC" name="course[]" >
+                                            <option value="">Select Board</option>
+                                            <option id="GSEB1" value="GSEB">GSEB</option>
+                                            <option id="CBSE1" value="CBSE">CBSE</option>
+                                        </select><br/>
+                                        <span id="sptxtNobHSC"></span>
+                                        
+                                    </td>
+                                    <td>
+                                        Passing Year:
+                                    </td>
+                                    <td>
+                                        <input type="text" id="numPYHSC" name="py[]" /><br/>
+                                        <span id="spnumPYHSC"></span>
+                                    </td>
+                                    <td>
+                                        Percentage:
+                                    </td>
+                                    <td>
+                                        <input type="text" id="numPerHSC" name="per[]" /><br/>
+                                        <span id="spnumPerHSC"></span>
+                                    </td>                        
+                                </tr>
+                                <tr>
+                                    <td colspan="6">
+                                        <hr/>
+                                    </td>
+                                </tr>           
+                                <tr>
+                                    <td colspan="6">
+                                        Bachelor Degree 
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Course Name:
+                                    </td>
+                                    <td>
+                                        <select id="txtCourseBachelor" name="course[]">
+                                            <option value="">Select Course</option>
+                                            <option id="BCA2" value="BCA">BCA</option>
+                                            <option id="B.Tech2" value="B.Tech">B.Tech</option>
+                                        </select><br/>
+                                        <span id="sptxtCourseBachelor"></span>
+                                    </td>
+                                    <!-- <td>
+                                        University:
+                                    </td>
+                                    <td>
+                                        <input type="text" id="txtUniBachelor" name="txtUniBachelor" /><br/>
+                                        <span id="sptxtUniBachelor"></span>
+                                    </td> -->
+                                    <td>
+                                        Passing Year:
+                                    </td>
+                                    <td>
+                                        <input type="text" id="numPYBachelor" name="py[]" /><br/>
+                                        <span id="spnumPYBachelor"></span>
+                                    </td>
+                                    <td>
+                                        Percentage:
+                                    </td>
+                                    <td>
+                                        <input type="text" id="numPerBachelor" name="per[]" /><br/>
+                                        <span id="spnumPerBachelor"></span>
+                                    </td>                        
+                                </tr>
+                                <tr>
+                                    <td colspan="8">
+                                        <hr/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="6">
+                                        Master Degree
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Course Name:
+                                    </td>
+                                    <td>
+                                        <select id="txtCourseMaster" name="course[]">
+                                            <option value="">Select Course</option>
+                                            <option id="MCA3" value="MCA">MCA</option>
+                                            <option id="M.tech3" value="M.tech">M.tech</option>
+                                        </select><br/>
+                                        <span id="sptxtCourseMaster"></span>
+                                    </td>
+                                    <!-- <td>
+                                        University:
+                                    </td>
+                                    <td>
+                                        <input type="text" id="txtUniMaster" name="txtUniMaster"/><br/>
+                                        <span id="sptxtUniMaster"></span>
+                                    </td> -->
+                                    <td>
+                                        Passing Year:
+                                    </td>
+                                    <td>
+                                        <input type="text" id="numPYMaster" name="py[]"/><br/>
+                                        <span id="spnumPYMaster"></span>
+                                    </td>
+                                    <td>
+                                        Percentage:
+                                    </td>
+                                    <td>
+                                        <input type="text" id="numPerMaster" name="per[]"/><br/>
+                                        <span id="spnumPerMaster"></span>
+                                    </td>                        
+                                </tr>
+                            </table>
+            </fieldset>
+            <fieldset id="wExp" hidden>
+                <legend>Work Experience</legend>
+                <table>
+                    <tr>
+                        <td>Company Name: </td>
+                        <td><input type="text" id="txtWECName1" name="weCompany"/><br/>
+                        <span id="sptxtWECName1"></span>
+                        </td>                    
+                        <td>Designation: </td>
+                        <td><input type="text" id="txtWEDesgn1" name="weDesig"/></td>
+                        <td>From: </td>
+                        <td><input type="text" id="txtWEFrom1" name="weFrom"/><br/>
+                            <span id="sptxtWEFrom1"></span></td>
+                        <td>To: </td>
+                        <td><input type="text" id="txtWETo1" name="weTo"/><br/>
+                            <span id="sptxtWETo1"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Company Name: </td>
+                        <td><input type="text" id="txtWECName2" name="weCompany"/><br/>
+                        <span id="sptxtWECName2"></span></td>
+                        <td>Designation: </td>
+                        <td><input type="text" id="txtWEDesgn2" name="weDesig"/></td>
+                        <td>From: </td>
+                        <td><input type="text" id="txtWEFrom2" name="weFrom"/><br/>
+                            <span id="sptxtWEFrom2"></span></td></td>
+                        <td>To: </td>
+                        <td><input type="text" id="txtWETo2" name="weTo"/><br/>
+                            <span id="sptxtWETo2"></span></td></td>
+                    </tr>
+                    <tr>
+                        <td>Company Name: </td>
+                        <td><input type="text" id="txtWECName3" name="weCompany"/>
+                        <br/>
+                        <span id="sptxtWECName3"></span>
+                        </td>
+                        <td>Designation: </td>
+                        <td><input type="text" id="txtWEDesgn3"  name="weDesig"/></td>
+                        <td>From: </td>
+                        <td><input type="text" id="txtWEFrom3" name="weFrom"/><br/>
+                            <span id="sptxtWEFrom3"></span></td>
+                        <td>To: </td>
+                        <td><input type="text" id="txtWETo3" name="weTo"/><br/>
+                            <span id="sptxtWETo3"></span></td>
+                    </tr>
+                </table>
+            </fieldset>
+            <fieldset id="fLKnown" hidden>
+                <legend>Language Known</legend>
+                <table width="100%">
+                    <tr>
+                        <td>
+                            <input type="checkbox" id="chkHindi" name="chkLang" value="1"/> Hindi
+                        </td>
+                        <td>
+                            <input type="checkbox" class="1" name="chkR" value="1"/> Read
+                        </td>
+                        <td>
+                            <input type="checkbox" class="1" name="chkW" value="1"/> Write
+                        </td>
+                        <td>
+                            <input type="checkbox" class="1" name="chkSpeak" value="1"/> Speak
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" id="chkEnglish" name="chkLang" value="2"/> English
+                        </td>
+                        <td>
+                            <input type="checkbox" class="2" name="chkR" value="1"/> Read
+                        </td>
+                        <td>
+                            <input type="checkbox" class="2" name="chkW" value="1"/> Write
+                        </td>
+                        <td>
+                            <input type="checkbox" class="2" name="chkSpeak" value="1"/> Speak
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" id="chkGujarati" name="chkLang" value="3"/> Gujarati
+                        </td>
+                        <td>
+                            <input type="checkbox" class="3" name="chkR" value="1"/> Read
+                        </td>
+                        <td>
+                            <input type="checkbox" class="3" name="chkW" value="1"/> Write
+                        </td>
+                        <td>
+                            <input type="checkbox" class="3" name="chkSpeak" value="1"/> Speak
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                            <center><span id="spChkLang"></span></center> 
+                        </td>
+                    </tr>
+                </table>                        
+            </fieldset>
+            <fieldset id="techKnown" hidden style="width:97%;">
+                <legend>Technologies Known</legend>
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <input type="checkbox" id="checkPhp" name="tech" value="1"/> PHP
+                            </td>
+                            <td>
+                                <input type="radio" class="B1" id="level0" name="level0" value="B"/> Beginner
+                            </td>
+                            <td>
+                                <input type="radio" class="M1" id="level0" name="level0" value="M"/> Mideator
+                            </td>
+                            <td>
+                                <input type="radio" class="E1" id="level0" name="level0" value="E"/> Expert
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" id="chkMysql" name="tech" value="2"/> Mysql
+                            </td>
+                            <td>
+                                <input type="radio" class="B2" id="level1" name="level1" value="B"/> Beginner
+                            </td>
+                            <td>
+                                <input type="radio" class="M2" id="level1" name="level1" value="M"/> Mideator
+                            </td>
+                            <td>
+                                <input type="radio" class="E2" id="level1" name="level1" value="E"/> Expert
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>   </center>
+                                <input type="checkbox" id="chkLaravel" name="tech" value="3"/> laravel
+                            </td>
+                            <td>
+                                <input type="radio" class="B3" id="level2" name="level2" value="B"/> Beginner
+                            </td>
+                            <td>
+                                <input type="radio" class="M3" id="level2" name="level2" value="M"/> Mideator
+                            </td>
+                            <td>
+                                <input type="radio" class="E3" id="level2" name="level2" value="E"/> Expert
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" id="chkOracle" name="tech" value="4"/> Oracle
+                            </td>
+                            <td>
+                                <input type="radio" class="B4" id="level3" name="level3" value="B"/> Beginner
+                            </td>
+                            <td>
+                                <input type="radio" class="M4" id="level3" name="level3" value="M"/> Mideator
+                            </td>
+                            <td>
+                                <input type="radio" class="E4" id="level3" name="level3" value="E"/> Expert
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                                <center><span id="spChkTech"></span></center> 
+                            </td>
+                        </tr>
+                    </table>   
+                            
+            </fieldset>
+            <fieldset id="ref" hidden>
+                <legend>Referance Contact</legend>
+                <table width="100%">
+                    <tr>
+                        <td>Name: </td>
+                        <td><input type="text" id="refName1" name="refName">
+                        <br/><span id="sprefName1"></span></td>
+                        <td>Contact Number: </td>
+                        <td><input type="text" id="refNum1" name="refNum"></td>
+                        <td>Relation: </td>
+                        <td><input type="text" id="refrel1" name="refrel"></td>
+                    </tr>   
+                    <tr>
+                        <td>Name: </td>
+                        <td><input type="text" id="refName2" name="refName">
+                        <br/><span id="sprefName2"></span></td>
+                        <td>Contact Number: </td>
+                        <td><input type="text" id="refNum2" name="refNum"></td>
+                        <td>Relation: </td>
+                        <td><input type="text" id="refrel2" name="refrel"></td>
+                    </tr>                  
+                </table>
+            </fieldset>
+            <fieldset id="pref" hidden>
+                <legend>Preferances</legend>
+                <table width="100%">
+                    <tr>
+                    <td rowspan="3">Preferd location: </td> 
+                    <td rowspan="3"><select name="selploc" id="selploc">
+                        <option name="optPloc" value="">Select Location</option>
+                        <option name="optPlocSurat" id="locSurat" value="Surat">Surat</option>
+                        <option name="optPlocAhmedabad" id="locAhmedabad" value="Ahmedabad">Ahmedabad</option>
+                    </select></td>
+                    <td>Notice Period(in months): </td>
+                    <td><input type="text" id="txtNP" name="txtNP"/><br/>
+                        <span id="sptxtNP"></span>
+                        </td>
+                    <td rowspan="3">Department: </td> 
+                    <td rowspan="3"><select name="selpDept" id="selpDept">
+                        <option name="optPDept" value="">Select Department</option>
+                        <option name="optPDeptDevelopment" id="dept1" value="1">Development</option>
+                        <option name="optPDeptDesign" id="dept2" value="2">Design</option>
+                        <option name="optPDeptMarketing" id="dept3" value="3">Marketing</option>
+                    </select></td>
+                    </tr>   
+                    <tr>
+                        <td>Expacted CTC: </td>
+                        <td><input type="text" id="txtExpCTC" name="txtExpCTC"/><br/>
+                            <span id="sptxtExpCTC"></span></td>
+                    </tr>    
+                    <tr>
+                        <td>Current CTC: </td>
+                        <td><input type="text" id="txtCurrCTC" name="txtCurrCTC"/><br/>
+                        <span id="sptxtCurrCTC"></span></td>
+                    </tr>            
+                </table>
+            </fieldset>
+        </form>
+    </div>
+    <div id="controller" style="margin: 0 auto;">
+        <table align="center">
+            <tr>
+                <td>
+                    <p id="left" style="cursor: pointer; border-style: solid; border-color: black; border-width: 1px; border-radius: 2%; background-color: black; color:white" onclick="prev()"><-</p>
+                </td>
+                <td>
+                    <p id="right" style="cursor: pointer; border-style: solid; border-color: black; border-width: 1px; border-radius: 2%; background-color: black; color:white" onclick="next()">-></p>
+                </td>
+            </tr>
+        </table></div>    
+    <script>
+        let pg=0
+        let id=undefined
+        const url = window.location.href;
+        const urlUpdateParams=new URLSearchParams(window.location.search);
+        let updateID=undefined 
+        showData()
+        async function showData(){     
+            if(url.includes("id")){            
+                const formData = new URLSearchParams();
+                updateID = urlUpdateParams.get('id');
+                formData.append("uid",updateID)
+                if(pg==0){                    
+                    let fetchPromise=await fetch("/display/basic",{
+                        method:"post",
+                        body:formData,                        
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        }
+                    })            
+                    .then((response) => {
+                        return response.json();
+                    })
+                    // console.log(JSON.stringify(fetchPromise))
+                    document.getElementById("txtFname").setAttribute("value",fetchPromise[0].fName)                    
+                    document.getElementById("txtLname").setAttribute("value",fetchPromise[0].lName)                    
+                    document.getElementById("txtDesig").setAttribute("value",fetchPromise[0].designation)                    
+                    document.getElementById("txtAdd1").innerHTML=fetchPromise[0].add1                    
+                    document.getElementById("txtAdd2").innerHTML=fetchPromise[0].add2                    
+                    document.getElementById("txtEmail").setAttribute("value",fetchPromise[0].email)                    
+                    document.getElementById("txtCity").setAttribute("value",fetchPromise[0].city)                    
+                    document.getElementById("txtPNumber").setAttribute("value",fetchPromise[0].contact) 
+                    document.getElementsByClassName(fetchPromise[0].gender)[0].setAttribute("checked","true")
+                    document.getElementById(fetchPromise[0].state).setAttribute("selected","true")
+                    document.getElementById("txtZip").setAttribute("value",fetchPromise[0].zip)
+                    document.getElementById("txtDOB").setAttribute("value",fetchPromise[0].dob)
+                    document.getElementById(fetchPromise[0].relationSt).setAttribute("selected","true")
+                }
+            }    
+        }
+        async function next(){
+            pg++;                
+            if(pg==1){
+
+                const fName=document.getElementById("txtFname");
+                const lName=document.getElementById("txtLname");
+                const design=document.getElementById("txtDesig");
+                const add1=document.getElementById("txtAdd1");
+                const add2=document.getElementById("txtAdd2");
+                const email=document.getElementById("txtEmail");
+                const city=document.getElementById("txtCity");
+                const txtPNumber=document.getElementById("txtPNumber");
+                const selState=document.getElementById("selState");
+                const gender=document.getElementsByClassName("rdbGender");
+                const txtZip=document.getElementById("txtZip");
+                const relStatus=document.getElementById("RS");
+                const dob=document.getElementById("txtDOB");
+                let arrReq=[{val:fName,msg:"First name"},{val:lName,msg:"Last name"},{val:design,msg:"Designation"},{val:add1,msg:"Address"},{val:email,msg:"Email ID"},{val:city,msg:"City"},{val:txtPNumber,msg:"Phone Number"},{val:gender,msg:"Gender"},{val:txtZip,msg:"Zip Code"},{val:dob,msg:"Date Of Birth"}]
+                let cnt=0
+                for(let i=0;i<9;i++){                        
+                    if(arrReq[i].msg=="Gender"){
+                        if((!(arrReq[i].val)[0].checked)&&(!(arrReq[i].val)[1].checked)){                        
+                            document.getElementById("sprdbGender").innerHTML="Please Select Gender";    
+                            cnt++;
+                            console.log("Cnt increment")        
+                            console.log("blank"+cnt+arrReq[i].msg)                            
+                        }else{
+                            document.getElementById("sprdbGender").innerHTML=""; 
+                        }
+                    }else{
+                        if(arrReq[i].val.value==""){                                      
+                            document.getElementById("sp"+arrReq[i].val.id).innerHTML="Please Enter "+arrReq[i].msg;    
+                            cnt++;
+                            console.log("Cnt increment")        
+                            console.log("blank"+cnt+arrReq[i].msg)                                                               
+                        }else{
+                            document.getElementById("sp"+arrReq[i].val.id).innerHTML=""; 
+                            console.log("not blank"+cnt)    
+                        }
+                    }
+                }
+                if(txtPNumber.value!="") {
+                    if(isNaN(txtPNumber.value)||txtPNumber.value.length!=10){
+                        document.getElementById("sptxtPNumber").innerHTML="Please Enter Proper Contact Number!!";    
+                        cnt++;
+                        console.log("Cnt increment")
+                    }else{
+                        document.getElementById("sptxtPNumber").innerHTML="";    
+                    }
+                } 
+                let emailRegex= /^\S+@\S+$/
+                if(email.value!=""){
+                    if(!emailRegex.test(email.value)){
+                        document.getElementById("sptxtEmail").innerHTML="Please Enter Proper Email ID!!";    
+                        cnt++;
+                        console.log("Cnt increment")
+                    }else{
+                        document.getElementById("sptxtEmail").innerHTML="";
+                    }
+                }     
+                if(txtZip.value!="") {                
+                const txtWEFrom1=document.getElementById("txtWEFrom1");
+                const txtWETo1=document.getElementById("txtWETo1");
+                    if(isNaN(txtZip.value)||txtZip.value.length!=6){
+                        document.getElementById("sptxtZip").innerHTML="Please Enter Proper Zip Code Number!!";    
+                        cnt++;
+                        console.log("Cnt increment")
+                    }else{
+                        document.getElementById("sptxtZip").innerHTML="";    
+                    }2002
+                }      
+                let dobRegex= /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/    
+                if(dob.value!=""){
+                    if(!dobRegex.test(dob.value)){
+                        document.getElementById("sptxtDOB").innerHTML="Please Enter Proper Date!!";    
+                        cnt++;
+                        console.log("Cnt increment")
+                    }else{
+                        document.getElementById("sptxtDOB").innerHTML="";
+                    }
+                }
+                if(txtZip.value!="") {
+                    if(isNaN(txtZip.value)||txtZip.value.length!=6){
+                        document.getElementById("sptxtZip").innerHTML="Please Enter Proper Zip Code Number!!";    
+                        cnt++;
+                        console.log("Cnt increment")
+                    }else{
+                        document.getElementById("sptxtZip").innerHTML="";    
+                    }
+                }    
+                if (cnt!=0){
+                    pg--
+                }else{        
+                    // const formData = new FormData(document.getElementById("basic"));
+                    const formData = new URLSearchParams();
+                    formData.append("txtFname",document.getElementById("txtFname").value)
+                    formData.append("txtLname",document.getElementById("txtLname").value)
+                    formData.append("txtDesig",document.getElementById("txtDesig").value)
+                    formData.append("txtAdd1",document.getElementById("txtAdd1").value)
+                    formData.append("txtAdd2",document.getElementById("txtAdd2").value)
+                    formData.append("txtEmail",document.getElementById("txtEmail").value)
+                    formData.append("txtCity",document.getElementById("txtCity").value)
+                    formData.append("txtPNumber",document.getElementById("txtPNumber").value)
+                    formData.append("selState",document.getElementById("selState").value)
+                    formData.append("rdbGender",document.querySelectorAll('input[name=rdbGender]:checked')[0].value)
+                    formData.append("txtZip",document.getElementById("txtZip").value)
+                    formData.append("RS",document.getElementById("RS").value)
+                    formData.append("txtDOB",document.getElementById("txtDOB").value)
+                    console.log(formData)                
+                    if(url.includes("id")){ 
+                        formData.append("id",updateID)
+                        let fetchPromise=await fetch("/update/basic",{
+                            method:"post",
+                            body:formData,
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded'
+                            }
+                        })                                
+                        document.getElementById("bd").setAttribute("hidden","true")
+                        document.getElementById("edu").removeAttribute("hidden")  
+                        console.log(updateID) 
+                        let fetchPromiseDisplay=await fetch("/display/edu",{
+                            method:"post",
+                            body:{uid:updateID},                        
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded'
+                            }
+                        })            
+                        .then((response) => {
+                            return response.json();
+                        })  
+                        console.log(fetchPromiseDisplay)             
+                        fetchPromiseDisplay.forEach((item,index,arr)=>{
+                            if(item.std=="SSC"){
+                                document.getElementById(item.board+"0").setAttribute("selected","true")
+                                document.getElementById("numPYSSC").setAttribute("value",item.passYear)
+                                document.getElementById("numPerSSC").setAttribute("value",item.percent)
+                            }
+                            if(item.std=="HSC"){
+                                document.getElementById(item.board+"1").setAttribute("selected","true")
+                                document.getElementById("numPYHSC").setAttribute("value",item.passYear)
+                                document.getElementById("numPerHSC").setAttribute("value",item.percent)
+                            }
+                            if(item.std=="Graduation"){
+                                document.getElementById(item.board+"2").setAttribute("selected","true")
+                                document.getElementById("numPYBachelor").setAttribute("value",item.passYear)
+                                document.getElementById("numPerBachelor").setAttribute("value",item.percent)
+                            }
+                            if(item.std=="Master"){
+                                document.getElementById(item.board+"3").setAttribute("selected","true")
+                                document.getElementById("numPYMaster").setAttribute("value",item.passYear)
+                                document.getElementById("numPerMaster").setAttribute("value",item.percent)
+                            }
+                        })                             
+                    }else{
+                        let fetchPromise=await fetch("/insert/basic",{
+                        method:"post",
+                        body:formData,
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        }
+                        })            
+                        .then((response) => {
+                            return response.json();
+                        })
+                        console.log(fetchPromise.id)
+                        id=fetchPromise.id   
+                        document.getElementById("bd").setAttribute("hidden","true")
+                        document.getElementById("edu").removeAttribute("hidden")                                     
+                                                                
+                    }                                         
+                }
+            }else if(pg==2){
+                let cnt=0
+                const txtNobSSC=document.getElementById("txtNobSSC");
+                const numPYSSC=document.getElementById("numPYSSC");
+                const numPerSSC=document.getElementById("numPerSSC");
+                const txtNobHSC=document.getElementById("txtNobHSC");
+                const numPYHSC=document.getElementById("numPYHSC");
+                const numPerHSC=document.getElementById("numPerHSC");
+                const txtCourseBachelor=document.getElementById("txtCourseBachelor");
+                // const txtUniBachelor=document.getElementById("txtUniBachelor");
+                const numPYBachelor=document.getElementById("numPYBachelor");
+                const numPerBachelor=document.getElementById("numPerBachelor");
+                const txtCourseMaster=document.getElementById("txtCourseMaster");
+                // const txtUniMaster=document.getElementById("txtUniMaster");
+                const numPYMaster=document.getElementById("numPYMaster");
+                const numPerMaster=document.getElementById("numPerMaster");
+                
+                const txtWEFrom1=document.getElementById("txtWEFrom1");
+                const txtWETo1=document.getElementById("txtWETo1");
+                const txtWEFrom2=document.getElementById("txtWEFrom2");
+                const txtWETo2=document.getElementById("txtWETo2");
+                const txtWEFrom3=document.getElementById("txtWEFrom3");
+                const txtWETo3=document.getElementById("txtWETo3");
+
+                let arrReq=[{val:numPYSSC,msg:"Passing Year"},{val:numPYHSC,msg:"Passing Year"},{val:numPYBachelor,msg:"Passing Year"},{val:numPerSSC,msg:"Percentage"},{val:numPerHSC,msg:"Percentage"},{val:numPerBachelor,msg:"Percentage"}]
+                let indexes=[0,1,2]
+                for(let i=0;i<indexes.length;i++){                        
+                    if(arrReq[indexes[i]].val.value!="") {
+                        if(isNaN(arrReq[indexes[i]].val.value)||arrReq[indexes[i]].val.value.length!=4){
+                            document.getElementById("sp"+arrReq[indexes[i]].val.id).innerHTML="Please Enter Proper Year!!";    
+                            cnt++;
+                            console.log("Cnt increment: "+arrReq[indexes[i]].val.id)
+                        }else{
+                            document.getElementById("sp"+arrReq[indexes[i]].val.id).innerHTML="";    
+                        }
+                   }     
+                }
+                if((numPYMaster.value!="")&&(isNaN(numPYMaster.value)||numPYMaster.value.length!=4)){
+                    document.getElementById("sp"+numPYMaster.id).innerHTML="Please Enter Proper Year!!";    
+                    cnt++;
+                    console.log("Cnt increment")
+                }else{
+                    document.getElementById("sp"+numPYMaster.id).innerHTML="";    
+                }
+                indexes[0]=3
+                indexes[1]=4
+                indexes[2]=5
+                let dobRegex= /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/   
+                for(let i=0;i<indexes.length;i++){                        
+                    if(arrReq[indexes[i]].val.value!="") {
+                        if(isNaN(arrReq[indexes[i]].val.value)||arrReq[indexes[i]].val.value>100){
+                            document.getElementById("sp"+arrReq[indexes[i]].val.id).innerHTML="Please Enter Proper Percentage!!";    
+                            cnt++;
+                            console.log("Cnt increment")
+                        }else{
+                            document.getElementById("sp"+arrReq[indexes[i]].val.id).innerHTML="";    
+                        }
+                   }     
+                }
+                if(numPerMaster.value!="") {
+                        if(isNaN(numPerMaster.value)||numPerMaster.value>100){
+                            document.getElementById("sp"+numPerMaster.id).innerHTML="Please Enter Proper Percentage!!";    
+                            cnt++;
+                            console.log("Cnt increment")
+                        }else{
+                            document.getElementById("sp"+numPerMaster.id).innerHTML="";    
+                        }
+                   }  
+                let Datearr=[txtWEFrom1,txtWETo1,txtWEFrom2,txtWETo2,txtWEFrom3,txtWETo3]
+                Datearr.forEach((item,index,arr)=>{
+                    if(item.value!=""){
+                        if(!dobRegex.test(item.value)){
+                            document.getElementById("sp"+item.id).innerHTML="Please Enter Proper Date"
+                            cnt++
+                        }else{                                
+                            document.getElementById("sp"+item.id).innerHTML=""
+
+                        }
+                    }
+                })
+                if(txtNobSSC.value!=""){
+                    if(numPYSSC.value==""||numPerSSC.value==""){
+                        document.getElementById("sptxtNobSSC").innerHTML="Please Enter All Data of SSC Board!!" 
+                        cnt++
+                    }else{
+                        document.getElementById("sptxtNobSSC").innerHTML="" 
+                    }
+                }else{
+                    document.getElementById("sptxtNobSSC").innerHTML="" 
+                }
+                if(txtNobHSC.value!=""){
+                    if(numPYHSC.value==""||numPerHSC.value==""){
+                        document.getElementById("sptxtNobHSC").innerHTML="Please Enter All Data of HSC Board!!" 
+                        cnt++
+                    }else{
+                        document.getElementById("sptxtNobHSC").innerHTML="" 
+                    }
+                }else{
+                    document.getElementById("sptxtNobHSC").innerHTML="" 
+                }
+                if(txtCourseBachelor.value!=""){
+                    if(numPerBachelor.value==""||numPYBachelor.value==""){
+                        document.getElementById("sptxtCourseBachelor").innerHTML="Please Enter All Data of Bachelor!!" 
+                        cnt++
+                    }else{
+                        document.getElementById("sptxtCourseBachelor").innerHTML="" 
+                    }
+                }else{
+                    document.getElementById("sptxtCourseBachelor").innerHTML="" 
+                }
+                if(txtCourseMaster.value!=""){
+                    if(numPerMaster.value==""||numPYMaster.value==""){
+                        document.getElementById("sptxtCourseMaster").innerHTML="Please Enter All Data of Master!!" 
+                        cnt++
+                    }else{
+                        document.getElementById("sptxtCourseMaster").innerHTML="" 
+                    }
+                }else{
+                    document.getElementById("sptxtCourseMaster").innerHTML="" 
+                }
+                if (cnt!=0){
+                    pg--
+                }else{
+                    const formData = new URLSearchParams();
+                    let courses=[document.getElementById("txtNobSSC").value,document.getElementById("txtNobHSC").value,document.getElementById("txtCourseBachelor").value,document.getElementById("txtCourseMaster").value]
+                    formData.append("course",courses)
+                    formData.append("py",[document.getElementById("numPYSSC").value,document.getElementById("numPYHSC").value,document.getElementById("numPYBachelor").value,document.getElementById("numPYMaster").value])
+                    formData.append("per",[document.getElementById("numPerSSC").value,document.getElementById("numPerHSC").value,document.getElementById("numPerBachelor").value,document.getElementById("numPerMaster").value])
+                    if(url.includes("id")){
+                        console.log("This") 
+                        let fetchPromise=await fetch("/update/edu",{
+                            method:"post",
+                            body:formData,
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded'
+                            }
+                        })                             
+                        document.getElementById("edu").setAttribute("hidden","true")                                
+                        document.getElementById("wExp").removeAttribute("hidden")   
+                        let fetchDisplayPromise=await fetch("/display/Wexp",{
+                            method:"post",
+                            body:formData,
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded'
+                            }
+                        }).then((response) => {
+                            return response.json();
+                        })
+                        fetchDisplayPromise.forEach((item,index,arr)=>{                        
+                            document.getElementById("txtWECName"+(parseInt(index)+1)).setAttribute("value",item.compName)
+                            document.getElementById("txtWEDesgn"+(parseInt(index)+1)).setAttribute("value",item.designation)
+                            document.getElementById("txtWEFrom"+(parseInt(index)+1)).setAttribute("value",item.fromWhen.split("T")[0])
+                            document.getElementById("txtWETo"+(parseInt(index)+1)).setAttribute("value",item.toWhen.split("T")[0])                                                
+                        })     
+                    }else{
+                        formData.append("id",id)
+                        let fetchPromise=fetch("/insert/edu",{
+                            method:"post",
+                            body:formData,
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded'
+                            }
+                        })            
+                        .then((response) => {
+                            return response.json();
+                        })
+                        document.getElementById("edu").setAttribute("hidden","true")                                
+                        document.getElementById("wExp").removeAttribute("hidden")
+                    }                                
+                }
+
+            }else if(pg==3){
+                let cnt=0
+                const txtWECName1=document.getElementById("txtWECName1");
+                const txtWECName2=document.getElementById("txtWECName2");
+                const txtWECName3=document.getElementById("txtWECName3");
+                const txtWEDesgn1=document.getElementById("txtWEDesgn1");
+                const txtWEDesgn2=document.getElementById("txtWEDesgn2");
+                const txtWEDesgn3=document.getElementById("txtWEDesgn3");
+                if(txtWECName1.value!=""){
+                    if(txtWEDesgn1.value==""||txtWEFrom1.value==""||txtWETo1.value==""){
+                        document.getElementById("sptxtWECName1").innerHTML="Please Enter All Data of this work experience!!" 
+                        cnt++
+                    }else{
+                        document.getElementById("sptxtWECName1").innerHTML="" 
+                    }
+                }else{
+                    document.getElementById("sptxtWECName1").innerHTML="" 
+                }
+                if(txtWECName2.value!=""){
+                    if(txtWEDesgn2.value==""||txtWEFrom2.value==""||txtWETo2.value==""){
+                        document.getElementById("sptxtWECName2").innerHTML="Please Enter All Data of this work experience!!!!" 
+                        cnt++
+                    }else{
+                        document.getElementById("sptxtWECName2").innerHTML="" 
+                    }
+                }else{
+                    document.getElementById("sptxtWECName2").innerHTML="" 
+                }
+                if(txtWECName3.value!=""){
+                    if(txtWEDesgn3.value==""||txtWEFrom3.value==""||txtWETo3.value==""){
+                        document.getElementById("sptxtWECName3").innerHTML="Please Enter All Data of this work experience!!!!" 
+                        cnt++
+                    }else{
+                        document.getElementById("sptxtWECName3").innerHTML="" 
+                    }
+                }else{
+                    document.getElementById("sptxtWECName3").innerHTML="" 
+                }
+                if (cnt!=0){
+                    pg--
+                }else{
+                    const formData = new URLSearchParams();
+                    let company=document.getElementsByName('weCompany');
+                    let Desig=document.getElementsByName('weDesig');
+                    let from=document.getElementsByName('weFrom');
+                    let to=document.getElementsByName('weTo');
+                    let companies=[]
+                    let desigs=[]
+                    let froms=[]
+                    let tos=[]
+                    company.forEach((item,index,arr)=>{
+                        companies.push(item.value)
+                        desigs.push(Desig[index].value)
+                        froms.push(from[index].value)
+                        tos.push(to[index].value)
+                    })
+                    formData.append("companies",companies)
+                    formData.append("desigs",desigs)
+                    formData.append("froms",froms)
+                    formData.append("tos",tos)
+                    if(url.includes("id")){
+                        let fetchPromise=fetch("/update/Wexp",{
+                            method:"post",
+                            body:formData,
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded'
+                            }
+                        }) 
+                        document.getElementById("wExp").setAttribute("hidden","true")      
+                        document.getElementById("fLKnown").removeAttribute("hidden") 
+                        let displayfetchPromise=await fetch("/display/langKnown",{
+                            method:"post",
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded'
+                            }
+                        })            
+                        .then((response) => {
+                            return response.json();
+                        })                    
+                        displayfetchPromise.forEach((item,index,arr)=>{
+                            if(item.lID==1){
+                                document.getElementById("chkHindi").setAttribute("checked","true")
+                                document.getElementsByClassName("1")[0].setAttribute("checked","true")
+                                document.getElementsByClassName("1")[1].setAttribute("checked","true")
+                                document.getElementsByClassName("1")[2].setAttribute("checked","true")
+                            }else if(item.lID==2){
+                                document.getElementById("chkEnglish").setAttribute("checked","true")
+                                document.getElementsByClassName("2")[0].setAttribute("checked","true")
+                                document.getElementsByClassName("2")[1].setAttribute("checked","true")
+                                document.getElementsByClassName("2")[2].setAttribute("checked","true")
+                            }else{
+                                document.getElementById("chkGujarati").setAttribute("checked","true")
+                                document.getElementsByClassName("3")[0].setAttribute("checked","true")
+                                document.getElementsByClassName("3")[1].setAttribute("checked","true")
+                                document.getElementsByClassName("3")[2].setAttribute("checked","true")
+                            }
+                        })
+                    }else{
+                        formData.append("id",id)
+                        let fetchPromise=fetch("/insert/Wexp",{
+                            method:"post",
+                            body:formData,
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded'
+                            }
+                        })            
+                        .then((response) => {
+                            return response.json();
+                        })
+                        document.getElementById("wExp").setAttribute("hidden","true")      
+                        document.getElementById("fLKnown").removeAttribute("hidden") 
+                    }
+                }                                         
+            }
+            else if(pg==4){
+                let cnt=0
+                const formData = new URLSearchParams();
+                var checkLang = document.querySelectorAll('input[name=chkLang]:checked');
+                let checkRead=document.querySelectorAll('input[name=chkR]:checked')
+                let checkWrite=document.querySelectorAll('input[name=chkW]:checked')                
+                let checkSpeak=document.querySelectorAll('input[name=chkSpeak]:checked')                
+                let checkLangs=[]
+                let checkReads=[]
+                let checkWrites=[]
+                let checkSpeaks=[]
+                checkLang.forEach((item,index,arr)=>{
+                    checkLangs.push(item.value)
+                    checkReads.push(checkRead[index].value)
+                    checkWrites.push(checkWrite[index].value)
+                    checkSpeaks.push(checkSpeak[index].value)
+                })                                
+                formData.append("langs",checkLangs)
+                formData.append("reads",checkReads)
+                formData.append("writes",checkWrites)
+                formData.append("speaks",checkSpeaks)   
+                if(url.includes("id")){
+                    let fetchPromise= fetch("/update/langKnown",{
+                        method:"post",
+                        body:formData,
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        }
+                    })            
+                    .then((response) => {
+                        return response.json();
+                    })
+                    document.getElementById("fLKnown").setAttribute("hidden","true")
+                    document.getElementById("techKnown").removeAttribute("hidden")
+                    let displayfetchPromise=await fetch("/display/techKnown",{
+                        method:"post",                        
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        }
+                    })
+                    .then((response) => {
+                        return response.json();
+                    })    
+                    console.log(displayfetchPromise)
+                    displayfetchPromise.forEach((item,index,arr)=>{
+                        if(item.techID==1){
+                            document.getElementById("checkPhp").setAttribute("checked","true")
+                        }else if(item.techID==2){
+                            document.getElementById("chkMysql").setAttribute("checked","true")
+                        }else if(item.techID==3){
+                            document.getElementById("chkLaravel").setAttribute("checked","true")
+                        }else{
+                            document.getElementById("chkOracle").setAttribute("checked","true")
+                        }
+                        document.getElementsByClassName(item.level+item.techID)[0].setAttribute("checked","true")
+                    })                    
+                }else{
+                    formData.append("id",id)             
+                    let fetchPromise=fetch("/insert/langKnown",{
+                        method:"post",
+                        body:formData,
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        }
+                    })            
+                    .then((response) => {
+                        return response.json();
+                    })
+                    document.getElementById("fLKnown").setAttribute("hidden","true")
+                    document.getElementById("techKnown").removeAttribute("hidden")
+                }
+                
+            }else if(pg==5){
+                let cnt=0
+                const formData = new URLSearchParams();
+                var checkTechs = document.querySelectorAll('input[name=tech]:checked');
+                let techs=[]
+                // let levels=[]
+                checkTechs.forEach((item,index,arr)=>{
+                    techs.push(item.value)
+                    let temp=document.querySelectorAll('input[name=level'+index+']:checked')
+                    console.log(temp[0].value)
+                    formData.append("level"+index,temp[0].value)
+                })
+                formData.append("tech",techs)
+                if(url.includes("id")){
+                    let fetchPromise=await fetch("/update/techKnown",{
+                        method:"post",
+                        body:formData,
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        }
+                    })  
+                    document.getElementById("techKnown").setAttribute("hidden","true")
+                    document.getElementById("ref").removeAttribute("hidden") 
+                    let displayfetchPromise=await fetch("/display/ref",{
+                        method:"post",                
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        }
+                    }).then((response) => {
+                        return response.json();                    
+                    })  
+                    displayfetchPromise.forEach((item,index,arr)=>{
+                        document.getElementById("refName"+(parseInt(index)+1)).setAttribute("value",item.Name)
+                        document.getElementById("refNum"+(parseInt(index)+1)).setAttribute("value",item.ContNum)
+                        document.getElementById("refrel"+(parseInt(index)+1)).setAttribute("value",item.rel)
+                    })   
+                }else{
+                    formData.append("id",id)      
+                    let fetchPromise=fetch("/insert/techKnown",{
+                        method:"post",
+                        body:formData,
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        }
+                    })            
+                    .then((response) => {
+                        return response.json();                    
+                    })          
+                    document.getElementById("techKnown").setAttribute("hidden","true")
+                    document.getElementById("ref").removeAttribute("hidden")            
+                }
+            }else if(pg==6){
+                let cnt=0
+                const refName1=document.getElementById("refName1");
+                const refName2=document.getElementById("refName2");
+                const refNum1=document.getElementById("refNum1");
+                const refrel1=document.getElementById("refrel1");
+                const refNum2=document.getElementById("refNum2");
+                const refrel2=document.getElementById("refrel2");
+                if(refName1.value!=""){
+                    if(refNum1.value==""||refrel1.value==""){
+                        document.getElementById("sprefName1").innerHTML="Please Enter All Data of this reference!!!!" 
+                        cnt++
+                    }else{
+                        if(isNaN(refNum1.value)||refNum1.value.length!=10){
+                            document.getElementById("sprefName1").innerHTML="Please Enter Proper Contact number" 
+                            cnt++
+                        }else{
+                            document.getElementById("sprefName1").innerHTML="" 
+                        }
+                    }
+                }else{
+                    document.getElementById("sprefName1").innerHTML="" 
+                }
+                if(refName2.value!=""){
+                    if(refNum2.value==""||refNum2.value==""){
+                        document.getElementById("sprefName2").innerHTML="Please Enter All Data of this reference!!!!" 
+                        cnt++
+                    }else{
+                        if(isNaN(refNum2.value)||refNum2.value.length!=10){
+                            document.getElementById("sprefName2").innerHTML="Please Enter Proper Contact number" 
+                            cnt++
+                        }else{
+                            document.getElementById("sprefName2").innerHTML="" 
+                        }
+                    }
+                }else{
+                    document.getElementById("sprefName2").innerHTML="" 
+                }
+                if (cnt!=0){
+                    pg--
+                }else{
+                    const formData = new URLSearchParams();
+                    let refName=document.getElementsByName('refName');
+                    let refNum=document.getElementsByName('refNum');
+                    let refrel=document.getElementsByName('refrel');
+                    let refNames=[]
+                    let refNums=[]
+                    let refrels=[]
+                    refName.forEach((item,index,arr)=>{
+                        refNames.push(item.value)
+                        refNums.push(refNum[index].value)
+                        refrels.push(refrel[index].value)
+                    })
+                    formData.append("refName",refNames)
+                    formData.append("refNum",refNums)
+                    formData.append("refrel",refrels)
+                    if(url.includes("id")){
+                        let fetchPromise=await fetch("/update/ref",{
+                            method:"post",
+                            body:formData,
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded'
+                            }
+                        })  
+                        document.getElementById("ref").setAttribute("hidden","true")
+                        document.getElementById("pref").removeAttribute("hidden")
+                        let displayfetchPromise=await fetch("/display/pref",{
+                            method:"post",                
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded'
+                            }
+                        }).then((response) => {
+                            return response.json();                    
+                        }) 
+                        console.log(displayfetchPromise) 
+                        document.getElementById("loc"+displayfetchPromise[0].loc).setAttribute("selected","true")
+                        document.getElementById("txtNP").setAttribute("value",displayfetchPromise[0].noticePeriod)
+                        document.getElementById("dept"+displayfetchPromise[0].deptID).setAttribute("selected","true")
+                        document.getElementById("txtExpCTC").setAttribute("value",displayfetchPromise[0].expCTC)
+                        document.getElementById("txtCurrCTC").setAttribute("value",displayfetchPromise[0].currCTC)
+                    }
+                    else{
+                        formData.append("id",id)
+                        let fetchPromise=fetch("/insert/ref",{
+                            method:"post",
+                            body:formData,
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded'
+                            }
+                        })            
+                        .then((response) => {
+                            return response.json();                    
+                        })          
+                        document.getElementById("ref").setAttribute("hidden","true")
+                        document.getElementById("pref").removeAttribute("hidden")
+                    }     
+                }           
+            }else if(pg==7){
+                let cnt=0
+                const txtNP=document.getElementById("txtNP")
+                const txtExpCTC=document.getElementById("txtExpCTC")
+                const txtCurrCTC=document.getElementById("txtCurrCTC")
+
+                let tempArr=[txtNP,txtExpCTC,txtCurrCTC]
+                tempArr.forEach((item,index,arr)=>{
+                    if(item.value!=""){
+                        if(isNaN(item.value)){
+                            document.getElementById("sp"+item.id).innerHTML="Please Enter Proper Value"
+                            cnt++
+                        }else{
+                            document.getElementById("sp"+item.id).innerHTML=""
+                        }
+                    }
+                })
+                if (cnt!=0){
+                    pg--
+                }else{
+                    const formData = new URLSearchParams();
+                    formData.append("selploc",document.getElementById("selploc").value)
+                    formData.append("txtNP",document.getElementById("txtNP").value)
+                    formData.append("selpDept",document.getElementById("selpDept").value)
+                    formData.append("txtExpCTC",document.getElementById("txtExpCTC").value)
+                    formData.append("txtCurrCTC",document.getElementById("txtCurrCTC").value)
+                    if(url.includes("id")){
+                        let fetchPromise= await fetch("/update/pref",{
+                            method:"post",
+                            body:formData,
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded'
+                            }
+                        }).then((response) => {
+                            return response.json();                    
+                        }) 
+                        if(fetchPromise.status==200){
+                            window.location.replace("http://localhost:3000/jaf");
+                        }                         
+                    }
+                    else{
+                        formData.append("id",id)
+                        let fetchPromise=await fetch("/insert/pref",{
+                            method:"post",
+                            body:formData,
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded'
+                            }
+                        })            
+                        .then((response) => {
+                            return response.json();                    
+                        })  
+                        if(fetchPromise.status==200){
+                            window.location.replace("http://localhost:3000/jaf");
+                        } 
+                    }                
+                                  
+                }
+            }
+
+            }
+            function prev(){
+                pg--;
+                console.log(pg)
+                if(pg==0){
+                    console.log("hi")
+                    document.getElementById("edu").setAttribute("hidden","true")
+                    document.getElementById("bd").removeAttribute("hidden")           
+                }
+                else if(pg==1){
+                    console.log("hi")
+                    document.getElementById("wExp").setAttribute("hidden","true")
+                    document.getElementById("edu").removeAttribute("hidden")           
+                }else if(pg==2){
+                    document.getElementById("fLKnown").setAttribute("hidden","true")
+                    document.getElementById("wExp").removeAttribute("hidden") 
+                }else if(pg==3){
+                    document.getElementById("techKnown").setAttribute("hidden","true") 
+                    document.getElementById("fLKnown").removeAttribute("hidden") 
+                }else if(pg==4){
+                    document.getElementById("ref").setAttribute("hidden","true") 
+                    document.getElementById("techKnown").removeAttribute("hidden") 
+                }
+        }
+    </script>
+</body>
+</html>

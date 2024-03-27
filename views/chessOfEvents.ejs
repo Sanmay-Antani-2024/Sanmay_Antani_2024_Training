@@ -1,0 +1,35 @@
+<html>    
+    <style>
+        *{
+            color: gray;
+        }
+        #odd{
+            background-color: aqua;
+        }
+        #even{
+            background-color: aquamarine;
+        }
+    </style>
+    <body onload="alert('page is loaded');" onunload="alert('page is going to unload');" onresize="alert('window is resized!!')">
+        <table height="10" class="tbl" id="tbl" style="width: auto;" border="1">
+            <tr class="rows">
+                <td class="columns" id="odd" ondblclick="alert('You Double Clicked !!');" style="cursor: pointer;">on double click</td>
+                <td id="even" style="height: 100%;width: 35px;"><input type="text" onblur="alert('Why are you not focusing me!!');" value="on blur"/><br/><input /></td>                                
+                <td class="columns" id="odd" onmouseover="alert('You put mouse over on it!!');">on mouse over</td>
+                <td id="even" onmouseout="alert('you pull out the mouse pointer!');">On Mouse out</td> 
+                <td id="odd" onmouseup="alert('you pull up the button of mouse!');">On Mouse up</td>                                
+                <td id="even" onmousedown="alert('you push down the button of mouse!');">On Mouse down</td>
+                <td id="odd" onmousemove="alert('you moved mouse!');">On Mouse move</td>                                                                
+            </tr>
+            <tr class="rows">
+                <td class="columns" id="even"><p ondrag="alert('You dragged me!!');">on drag</p></td> 
+                <td id="odd"><p ondragend="alert('You dragging is ended!!');">on dragend</p></td>
+                <td id="even" style="height: 100%;width: 35px;"><input type="text" onkeydown="alert('Your key is down!!');" placeholder="on keydown"/></td>                                
+                <td id="odd" style="height: 100%;width: 35px;"><input type="text" onkeyup="alert('Your key is up!!');" placeholder="on keyup"/></td>                                
+                <td id="even" style="height: 100%;width: 35px;"><input type="text" onfocus="alert('you put focus on me!!');" placeholder="on focus"/></td>                          
+                <td id="odd"><form onsubmit="alert('you submited a form!!');"><input type="submit" value="On Submit"/></form></td>
+                <td id="even"><input type="checkbox" onchange="alert('you changed checkboxes selection !!');">onchange</td>
+            </tr>         
+        </table>
+    </body>
+</html>

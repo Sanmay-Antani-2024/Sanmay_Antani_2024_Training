@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+       <!-- loom video:
+    https://www.loom.com/share/6673775004f94d4e8f7b378072575e92?sid=c5a6e130-0042-4235-b949-9e804ccc4eaa -->
+    <center><h3>Name:Sanmay Antani</br>Employee ID:24DEV037<br/>Date:28-02-2024</h3></center>
+    <center><h3>Report Card:</h3></center>
+    <div style="border-width:1px;border-style: solid;border-radius: 5px; height: 439px; width: 666px; margin: 0 auto;" >
+        <table align="center">
+            <tr>
+                <td>ID:</td>
+                <td><%=id%></td>
+            </tr>
+            <tr>
+                <td>Name:</td>
+                <td><%=name%></td>
+            </tr>
+        </table>    
+        <table style="height: 322px;  width: 613px;" align="center" border="1">
+            <tr>
+                <th rowspan="2">Subject Name</th>
+                <th colspan="2">Terminal Exam</th>
+                <th colspan="2">Primary Exam</th>
+                <th colspan="2">Final Exam</th>
+                <th rowspan="2">Total</th>
+            </tr>
+            <tr>     
+                <th>practical</th>
+                <th>Theory</th>
+                <th>practical</th>
+                <th>Theory</th>
+                <th>practical</th>
+                <th>Theory</th>           
+            </tr>
+            <% var total=[]%>
+            <%for(let i=0;i<(s.length/6);i++){%>
+                <tr>
+                    <% var sum=0; %>
+                    <td><%=s[i].subname%></td>                
+                    <%for(let j=i;j<s.length;j=j+6){%>                    
+                        <td><%=s[j].ObtainMarks%></td>
+                        <%sum=sum+parseInt(s[j].ObtainMarks)%>
+                    <%}%>       
+                    <td><%=sum%></td>
+                    <%total.push(sum)%>
+                    <%sum=0%>
+                </tr>
+            <%}%>        
+        </table>
+        <%for(let i=0;i<total.length;i++){%>
+            <%sum=sum+total[i]%>
+        <%}%>
+        <table align="center">
+            <tr>
+                <td>Percentage:</td>
+                <td><%=((100*sum)/1200).toFixed(2)%>%</td>
+            </tr>
+            <tr>
+                <td>Attendance:</td>
+                <td><%=s[0].presentPer.toFixed(2)%>%</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

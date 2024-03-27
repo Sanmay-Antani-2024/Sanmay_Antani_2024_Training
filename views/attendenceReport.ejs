@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- loom video:
+    https://www.loom.com/share/f21ff8a54af84001b1eb3eef3a301e1b?sid=24f5e3d0-c759-482a-8a66-c7c836bec2ec -->
+    <center><h3>Name:Sanmay Antani</br>Employee ID:24DEV037<br/>Date:27-02-2024</h3></center>
+    <table align="center">
+        <form method="get">
+        <tr>
+            <th>Month</th>
+            <td>
+                <select onchange="submit()" name="selMonth">
+                    <%if(selMonth=='12'){%>
+                        <option value="12" selected>December 2023</option>
+                    <%}else{%>
+                        <option value="12">December 2023</option>
+                    <%}%>
+                    <%if(selMonth=='1'){%>
+                        <option value="1" selected>January 2023</option>
+                    <%}else{%>
+                        <option value="1">January 2023</option>
+                    <%}%>
+                    <%if(selMonth=='2'){%>
+                        <option value="2" selected>February 2023</option>
+                    <%}else{%>
+                        <option value="2">February 2023</option>
+                    <%}%>                                
+                </select>        
+                <input type="hidden" name="pageID" value="1"/>
+            </td>          
+        </tr>
+        </form>
+    </table>
+    <table border="1" width="30%" align="center">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Present Days</th>
+            <th>Present %</th>
+        </tr>
+        <% for(let i=0;i<s.length;i++){ %>
+            <tr>
+                <td><%=s[i].id%></td>
+                <td><%=s[i].name%></td>
+                <td><%=s[i].pdays%></td>
+                <td><%=s[i].percent.toFixed(2)%>%</td>
+            </tr>
+        <%}%>
+    </table>
+    <table align="center" style="text-align: center;">
+        <tr>            
+            <td><a href="/?pageID=1&selMonth=<%=selMonth%>"><<</a></td>
+            <% if(PID==1){%>
+                <td><</td>                        
+            <%}else{%>  
+                <td><a href="/?pageID=<%=parseInt(PID)-1%>&selMonth=<%=selMonth%>"><</a></td>
+            <%}%>
+            <td style="border-style: solid; border-width: 1px;"><%= PID%></td>
+            <% if(PID==10){%>
+                <td>></td>
+            <%}else{%>
+                <td><a href="/?pageID=<%=parseInt(PID)+1 %>&selMonth=<%=selMonth%>">></a></td>
+            <%}%>            
+            <td><a href="/?pageID=10&selMonth=<%=selMonth%>">>></a></td>            
+        </tr>
+    </table>
+</body>
+</html>

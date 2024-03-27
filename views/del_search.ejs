@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    textarea{
+        font-size: 20px;
+    }
+</style>
+<!-- window.scrollY -->
+<body>    
+    <center><h3>Name:Sanmay Antani</br>Employee ID:24DEV037<br/>Date:05-03-2024</h3></center>        
+    <table align="center" width="80%">
+        <tr>
+            <td>
+                <table border="1" align="center">
+                    <tr>
+                        <th>Student Name</th>
+                        <td>_</td>
+                    </tr>
+                    <tr>
+                        <th>Contact Number</th>
+                        <td>{</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>$</td>
+                    </tr>
+                    <tr>
+                        <th>Age</th>
+                        <td>}</td>
+                    </tr>
+                    <tr>
+                        <th>AadharCardNo</th>
+                        <td>:</td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <form method="get">
+                    <table>
+                        <tr>
+                            <%if(txtQry==undefined){%>                        
+                                <td><textarea name="delQueryTxt"></textarea></td>
+                            <%}else{%>
+                                <td><textarea name="delQueryTxt"><%=txtQry%></textarea></td>
+                            <%}%>
+                            <td><input type="submit" value="Go"/></td>
+                        </tr>
+                    </table>
+                </form>
+            </td>
+        </tr>
+    </table>
+    <%if(s!=undefined){%>
+        <table align="center" border="1">
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Contact No
+                </th>         
+                <th>
+                    Gender
+                </th>
+                <th>
+                    Date Of Birth
+                </th>
+                <th>
+                    Age
+                </th>
+                <th>
+                    Roll No.
+                </th>
+                <th>
+                    Email ID
+                </th>
+                <th>
+                    Aadhar Card No.
+                </th>
+                <th>
+                    Department ID
+                </th>
+                <th>
+                    Created At
+                </th>
+            </tr>
+            <%for(let i=0;i<s.length;i++){%>
+                <tr>
+                    <td>
+                        <%=s[i].studentID%>
+                    </td>
+                    <td>
+                        <%=s[i].studentName%>
+                    </td>
+                    <td>
+                        <%=s[i].contact_no%>
+                    </td>              
+                    <td>
+                        <%=s[i].gender%>
+                    </td>
+                    <td>
+                        <%= new Date(s[i].dob).toLocaleDateString() %>
+                    </td>
+                    <td>
+                        <%=s[i].age%>
+                    </td>
+                    <td>
+                        <%=s[i].roll_no%>
+                    </td>
+                    <td>
+                        <%=s[i].emailID%>
+                    </td>
+                    <td>
+                        <%=s[i].AadharCardNo%>
+                    </td>
+                    <td>
+                        <%=s[i].DepartmentID%>
+                    </td>
+                    <td>
+                        <%= new Date(s[i].created_at).toLocaleString()%>
+                    </td>        
+                </tr>
+            <%}%>
+        </table>
+    <%}%>
+</body>
+</html>

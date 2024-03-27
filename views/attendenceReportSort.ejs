@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center><h3>Name:Sanmay Antani</br>Employee ID:24DEV037<br/>Date:04-03-2024</h3></center>
+    <table align="center">
+        <form method="get">
+        <tr>
+            <th>Month</th>
+            <td>
+                <select onchange="submit()" name="selMonth">
+                    <%if(selMonth=='12'){%>
+                        <option value="12" selected>December 2023</option>
+                    <%}else{%>
+                        <option value="12">December 2023</option>
+                    <%}%>
+                    <%if(selMonth=='1'){%>
+                        <option value="1" selected>January 2023</option>
+                    <%}else{%>
+                        <option value="1">January 2023</option>
+                    <%}%>
+                    <%if(selMonth=='2'){%>
+                        <option value="2" selected>February 2023</option>
+                    <%}else{%>
+                        <option value="2">February 2023</option>
+                    <%}%>                                
+                </select>        
+                <input type="hidden" name="pageID" value="1"/>
+            </td>          
+        </tr>
+        </form>
+    </table>
+    <table border="1" width="30%" align="center">
+        <tr>     
+            <% let ord="" %>
+            <% let Ofield=""%>
+            <% if(clickedOfield=="AttendenceJan2024.stID" && cickedOrder=="asc"){%>
+                <th><a href="/sorting?pageID=1&selMonth=<%=selMonth%>&Ofield=AttendenceJan2024.stID&order=desc">ID </a><span id="upArr" style="background-color: black; color: white;">&uarr;</span><span id="downArr">&darr;</span></th>            
+            <%}else{%>
+                <th><a href="/sorting?pageID=1&selMonth=<%=selMonth%>&Ofield=AttendenceJan2024.stID&order=asc">ID </a><span id="upArr">&uarr;</span><span id="downArr" style="background-color: black; color: white;">&darr;</span></th>            
+            <%}%>       
+            <% if(clickedOfield=="studentMaster.studentName" && cickedOrder=="asc"){%>
+                <th><a href="/sorting?pageID=1&selMonth=<%=selMonth%>&field=stID&Ofield=studentMasterAttRep.studentName&order=desc">Name</a><span id="upArr" style="background-color: black; color: white;">&uarr;</span><span id="downArr">&darr;</span></th>
+            <%}else{%>
+                <th><a href="/sorting?pageID=1&selMonth=<%=selMonth%>&field=stID&Ofield=studentMasterAttRep.studentName&order=asc">Name</a><span id="upArr">&uarr;</span><span id="downArr" style="background-color: black; color: white;">&darr;</span></th>
+            <%} if(clickedOfield=="pdays" && cickedOrder=="asc"){%>
+                <th><a href="/sorting?pageID=1&selMonth=<%=selMonth%>&field=stID&Ofield=pdays&order=desc">Present Days </a><span id="upArr" style="background-color: black; color: white;">&uarr;</span><span id="downArr">&darr;</span></th>
+            <%}else{%>
+                <th><a href="/sorting?pageID=1&selMonth=<%=selMonth%>&field=stID&Ofield=pdays&order=asc">Present Days </a><span id="upArr">&uarr;</span><span id="downArr" style="background-color: black; color: white;">&darr;</span></th>
+            <%}%> <% if(clickedOfield=="percent" && cickedOrder=="asc"){%>
+                <th><a href="/sorting?pageID=1&selMonth=<%=selMonth%>&field=stID&Ofield=percent&order=desc">Present % </a><span id="upArr" style="background-color: black; color: white;">&uarr;</span><span id="downArr">&darr;</span></th>
+            <%}else{%>
+                <th><a href="/sorting?pageID=1&selMonth=<%=selMonth%>&field=stID&Ofield=percent&order=asc">Present % </a><span id="upArr">&uarr;</span><span id="downArr" style="background-color: black; color: white;">&darr;</span></th>
+            <%}%>  
+        </tr>
+        <% for(let i=0;i<s.length;i++){ %>
+            <tr>
+                <td><%=s[i].id%></td>
+                <td><%=s[i].name%></td>
+                <td><%=s[i].pdays%></td>
+                <td><%=s[i].percent.toFixed(2)%>%</td>
+            </tr>
+        <%}%>
+    </table>
+    <table align="center" style="text-align: center;">
+        <tr>            
+            <td><a href="/sorting?pageID=1&selMonth=<%=selMonth%>&Ofield=<%=clickedOfield%>&order=<%=cickedOrder%>"><<</a></td>
+            <% if(PID==1){%>
+                <td><</td>                        
+            <%}else{%>  
+                <td><a href="/sorting?pageID=<%=parseInt(PID)-1%>&selMonth=<%=selMonth%>&Ofield=<%=clickedOfield%>&order=<%=cickedOrder%>"><</a></td>
+            <%}%>
+            <td style="border-style: solid; border-width: 1px;"><%= PID%></td>
+            <% if(PID==10){%>
+                <td>></td>
+            <%}else{%>
+                <td><a href="/sorting?pageID=<%=parseInt(PID)+1 %>&selMonth=<%=selMonth%>&Ofield=<%=clickedOfield%>&order=<%=cickedOrder%>">></a></td>
+            <%}%>            
+            <td><a href="/sorting?pageID=10&selMonth=<%=selMonth%>&Ofield=<%=clickedOfield%>&order=<%=cickedOrder%>">>></a></td>            
+        </tr>
+    </table>
+</body>
+</html>

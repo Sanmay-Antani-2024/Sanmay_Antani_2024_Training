@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: rgb(207, 255, 239);">
+    <h3 style="text-align: center;">login</h3>    
+        <div style="margin: 0 auto; width: 37%; height: 195px; border-width: 1px; border-style: solid; border-radius: 5%; background-color: aquamarine;">
+            <form method="post" id="regForm">
+                <table align="center" style="height: 170px;width: 630px;">
+                    <tr>                  
+                        <th>User Name:</th>
+                        <td><input type="text" name="uname" id="uname"></td>            
+                    </tr>
+                    <tr>
+                        <th>Password:</th>
+                        <td><input type="password" id="pass" name="pass"/></br>
+                    </tr>
+                    <tr>
+                        <td colspan="4" style="text-align: center;"><div style="background-color: rgb(42, 59, 207); color:white; width: 100px;  border-color: antiquewhite; border-style: solid; border-width: 1px; border-radius: 5px; cursor: pointer;position: relative;left: 264px;" onclick="verifyUser()">Login</div><br/><span id="msg" style="color: red; font-size: small;"></span>
+                    </td>
+                    </tr>                
+                </table>
+            </form>
+        </div>
+        <script>
+            async function verifyUser(){
+                let fd=new URLSearchParams()
+                fd.append("uname",document.getElementById("uname").value)
+                fd.append("pass",document.getElementById("pass").value)
+                let fetchPromise=await fetch("/login",{
+                    method:"post",
+                    body:fd,
+                    headers:{
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                })
+                .then((response)=>{
+                    return response.json()
+                })
+                if(fetchPromise.status==200){
+                    document.getElementById("msg").innerHTML=""   
+                    let fd2= new URLSearchParams()
+                    fd2.append("uname",document.getElementById("uname").value)                 
+                    let fetchPromise2=await fetch("/userData",{
+                        method:"post",
+                        body:fd2,
+                        headers:{
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                        }
+                    })
+                    .then((response)=>{
+                        return response.json()
+                    })
+                    await sessionStorage.setItem("user",fetchPromise2.res[0])
+                    console.log("at home Page",JSON.stringify(sessionStorage.getItem("user")))
+                    window.location.href="http://localhost:3000/homePage"
+                }else{
+                    document.getElementById("msg").innerHTML="Incorrect UserName or password!!"
+                }
+            }
+        </script>
+</body>
+</html>

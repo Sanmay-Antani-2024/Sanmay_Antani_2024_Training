@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>        
+        th{
+            background-color: rgb(255, 170, 59);
+        }
+        td{
+            background-color: rgb(255, 200, 129);
+        }
+    </style>
+</head>
+<body>
+    <center><h3>Name:Sanmay Antani</br>Employee ID:24DEV037<br/>Date:21-03-2024</h3></center>
+    <table border="1" width="60%" align="center">
+        <tr>
+            <%let keys=Object.keys(r[0])%>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Gender</th>
+                <th>Designation</th>
+                <th>RelationShip Status</th>
+                <th>Address 1</th>
+                <th>Address 2</th>
+                <th>Date Of Birth</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Zip code</th>
+                <th>Email ID</th>
+                <th>Contact No.</th>
+        </tr>       
+        <%let vals=Object.values(r)%>
+        <%vals.forEach((item,index,arr)=>{%>
+            <tr>
+                <%keys.forEach((item2,index2,arr2)=>{%>
+                    <%if(index2==8){%>
+                        <td><%=item[item2].toLocaleDateString()%></td>
+                    <%}else{%>
+                        <td><%=item[item2]%></td>
+                    <%}%>
+                <%})%>
+                <td><a href="/i?id=<%=item.applID%>">Edit</a></td>
+            </tr>
+        <%})%>
+    </table>
+    <a href="/i">insert</a>
+</body>
+</html>

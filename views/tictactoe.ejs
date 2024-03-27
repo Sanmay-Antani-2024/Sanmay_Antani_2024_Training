@@ -1,0 +1,244 @@
+<html>
+    <style>
+        body{
+            margin-top: 5%;
+        }
+    </style>
+    <body style="background-color: lightblue;">
+        <!-- loom video link: -->
+        <!-- https://www.loom.com/share/71d5e5dd9fe147c28a89a854da570c45?sid=1c8e66e6-fe4e-4a70-a5ef-661bdbf98d7b -->        
+        <center><H1>Sanmay Antani <br/>Employee ID: 24DEV037<br/>Date:02-02-2024</H1></center>
+        <table align="center"  style="border: 20cm; border-color:black;" border="20" height="200" width="200">
+            <tr>
+                <td id="1" onclick="clicked(this)"></td>
+                <td id="2" onclick="clicked(this)"></td>
+                <td id="3" onclick="clicked(this)"></td>
+            </tr>
+            <tr>
+                <td id="4" onclick="clicked(this)"></td>
+                <td id="5" onclick="clicked(this)"></td>
+                <td id="6" onclick="clicked(this)"></td>
+            </tr>
+            <tr>
+                <td id="7" onclick="clicked(this)"></td>
+                <td id="8" onclick="clicked(this)"></td>
+                <td id="9" onclick="clicked(this)"></td>
+            </tr>
+        </table>
+        <script>
+            clickcnt=0;
+            const sel=[];            
+            const row1=[1,2,3];
+            const row2=[4,5,6];
+            const row3=[7,8,9];  
+            const col1=[1,4,7];
+            const col2=[2,5,8];
+            const col3=[3,6,9];
+            const cross1=[1,5,9];
+            const cross2=[3,5,7];
+            const classes=["shun","chokdi"];      
+            function clicked(obj){
+                if(!sel.includes(obj.id)){
+                    clickcnt++;                                    
+                    var cell=document.getElementById(obj.id);
+                    var pic=document.createElement('img');
+                    if(clickcnt%2!=0){
+                        pic.setAttribute("src","zero.jpeg");
+                        cell.setAttribute("class","shun");
+                    }else{
+                        pic.setAttribute("src","cross.png");
+                        cell.setAttribute("class","chokdi");
+                    }                    
+                    pic.setAttribute("height","50");
+                    pic.setAttribute("style","text-align:center;");
+                    pic.setAttribute("width","50");
+                    cell.appendChild(pic);                
+                    obj.style.height="60";
+                    obj.style.width="60";
+                    sel[clickcnt-1]=obj.id;                    
+                }
+
+
+                var pointcnt=0;
+                for(let i=0;i<2;i++){
+                    for(let j=0;j<3;j++){
+                        if(document.getElementById(row1[j]).getAttribute("class")==classes[i]){
+                            console.log(document.getElementById(row1[j]).getAttribute("class"));
+                            pointcnt++;
+                            console.log(pointcnt);
+                        }                        
+                    }
+                    if(pointcnt==3){
+                        if(i==0){
+                            alert("Player 1 won the match!!");
+                        }
+                        
+                        if(i==1){
+                            alert("Player 2 won the match!!");
+                        }
+                        window.location.reload();
+                    }else{
+                        console.log("\n");
+                        pointcnt=0;
+                    }
+                    for(let j=0;j<3;j++){
+                        if(document.getElementById(row2[j]).getAttribute("class")==classes[i]){
+                            console.log(document.getElementById(row2[j]).getAttribute("class"));
+                            pointcnt++;
+                            console.log(pointcnt);
+                        }                        
+                    }
+                    if(pointcnt==3){
+                        if(i==0){
+                            alert("Player 1 won the match!!");
+                        }
+                        
+                        if(i==1){
+                            alert("Player 2 won the match!!");
+                        }
+                        window.location.reload();
+                    }else{
+                        console.log("\n");
+                        pointcnt=0;
+                    }
+
+
+
+                    for(let j=0;j<3;j++){
+                        if(document.getElementById(row3[j]).getAttribute("class")==classes[i]){
+                            console.log(document.getElementById(row3[j]).getAttribute("class"));
+                            pointcnt++;
+                            console.log(pointcnt);
+                        }                        
+                    }
+                    if(pointcnt==3){
+                        if(i==0){
+                            alert("Player 1 won the match!!");
+                        }
+                        
+                        if(i==1){
+                            alert("Player 2 won the match!!");
+                        }
+                        window.location.reload();
+                    }else{
+                        console.log("\n");
+                        pointcnt=0;
+                    }
+                 
+
+                    for(let j=0;j<3;j++){
+                        if(document.getElementById(col1[j]).getAttribute("class")==classes[i]){
+                            console.log(document.getElementById(col1[j]).getAttribute("class"));
+                            pointcnt++;
+                            console.log(pointcnt);
+                        }                        
+                    }
+                    if(pointcnt==3){
+                        if(i==0){
+                            alert("Player 1 won the match!!");
+                        }
+                        
+                        if(i==1){
+                            alert("Player 2 won the match!!");
+                        }
+                        window.location.reload();
+                    }else{
+                        console.log("\n");
+                        pointcnt=0;
+                    }
+
+
+                    for(let j=0;j<3;j++){
+                        if(document.getElementById(col2[j]).getAttribute("class")==classes[i]){
+                            console.log(document.getElementById(col2[j]).getAttribute("class"));
+                            pointcnt++;
+                            console.log(pointcnt);
+                        }                        
+                    }
+                    if(pointcnt==3){
+                        if(i==0){
+                            alert("Player 1 won the match!!");
+                        }
+                        
+                        if(i==1){
+                            alert("Player 2 won the match!!");
+                        }
+                        window.location.reload();
+                    }else{
+                        console.log("\n");
+                        pointcnt=0;
+                    }
+
+
+                    for(let j=0;j<3;j++){
+                        if(document.getElementById(col3[j]).getAttribute("class")==classes[i]){
+                            console.log(document.getElementById(col3[j]).getAttribute("class"));
+                            pointcnt++;
+                            console.log(pointcnt);
+                        }                        
+                    }
+                    if(pointcnt==3){
+                        if(i==0){
+                            alert("Player 1 won the match!!");
+                        }
+                        
+                        if(i==1){
+                            alert("Player 2 won the match!!");
+                        }
+                        window.location.reload();
+                    }else{
+                        console.log("\n");
+                        pointcnt=0;
+                    }
+
+
+                    for(let j=0;j<3;j++){
+                        if(document.getElementById(cross1[j]).getAttribute("class")==classes[i]){
+                            console.log(document.getElementById(cross1[j]).getAttribute("class"));
+                            pointcnt++;
+                            console.log(pointcnt);
+                        }                        
+                    }
+                    if(pointcnt==3){
+                        if(i==0){
+                            alert("Player 1 won the match!!");
+                        }
+                        
+                        if(i==1){
+                            alert("Player 2 won the match!!");
+                        }
+                        window.location.reload();
+                    }else{
+                        console.log("\n");
+                        pointcnt=0;
+                    }
+
+                    for(let j=0;j<3;j++){
+                        if(document.getElementById(cross2[j]).getAttribute("class")==classes[i]){
+                            console.log(document.getElementById(cross2[j]).getAttribute("class"));
+                            pointcnt++;
+                            console.log(pointcnt);
+                        }                        
+                    }
+                    if(pointcnt==3){
+                        if(i==0){
+                            alert("Player 1 won the match!!");
+                        }
+                        
+                        if(i==1){
+                            alert("Player 2 won the match!!");
+                        }
+                        window.location.reload();
+                    }else{
+                        console.log("\n");
+                        pointcnt=0;
+                    }                    
+                }
+                if(clickcnt==9){
+                    alert("Match Draw!!");
+                    window.location.reload();
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: rgb(207, 255, 239);">
+    <h3 style="text-align: center;">Registration Form</h3>
+    <div style="margin: 0 auto; width: 37%; height: 195px; border-width: 1px; border-style: solid; border-radius: 5%; background-color: aquamarine;">
+        <form method="post" id="regForm">
+            <table align="center" style="height: 170px;width: 630px;">
+                <tr>                  
+                    <th>First Name:</th>
+                    <td><input type="text" name="Fname" id="Fname"></td>
+                    <th>Last Name:</th>
+                    <td><input type="text" name="Lname" id="Lname"></td>
+                </tr>
+                <tr>
+                    <th>Email:</th>
+                    <td><input type="text" id="email" name="email"/></td>
+                    <th>Contact No:</th>
+                    <td><input type="text" id="Contact" name="Contact"/></td>                    
+                </tr>
+                <tr>
+                    <th>Gender</th>
+                    <td><input type="radio" id="gender" name="gender" value="M"/>Male</td>
+                    <td><input type="radio" id="gender" name="gender" value="F"/>Female</td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="text-align: center;"><div style="background-color: rgb(42, 59, 207); color:white; width: 100px;  border-color: antiquewhite; border-style: solid; border-width: 1px; border-radius: 5px; cursor: pointer;position: relative;left: 264px;" onclick="reg()">Submit</div></td>                    
+                </tr>                                
+            </table>
+        </form>
+    </div>
+    <p style="text-align: center;">Allready have account do <a href="/login">sign in</a></p>
+    <p style="text-align: center;"><a id="link"></a></p>
+    <script>
+        async function reg(){
+            let fd = new URLSearchParams()
+            fd.append("Fname",document.getElementById("Fname").value)
+            fd.append("Lname",document.getElementById("Lname").value)
+            fd.append("email",document.getElementById("email").value)
+            fd.append("Contact",document.getElementById("Contact").value)
+            fd.append("gender",document.getElementById("gender").value)
+            let fetchPromise=await fetch("/",{
+                method:"post",
+                body:fd,
+                headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+            }).then((response)=>{
+                return response.json()
+            })
+            if(fetchPromise.status==200){
+                console.log(fetchPromise.uid)
+                document.getElementById("link").innerHTML="Click Here to verification"
+                document.getElementById("link").setAttribute("href","http://localhost:3000/"+fetchPromise.random)
+            }else if(fetchPromise.status==201){
+                document.getElementById("link").innerHTML="User Is Allready Exists and Active Click Here and please Do Login !!"
+                document.getElementById("link").setAttribute("href","http://localhost:3000/login")
+            }else if(fetchPromise.status==202){
+                document.getElementById("link").innerHTML="User Is Allready Exists but inactive please check your mail and click on varification link !!"
+            }
+        }
+    </script>
+</body>
+</html>
