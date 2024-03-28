@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center><h3>Name:Sanmay Antani</br>Employee ID:24DEV037<br/>Date:29-02-2024</h3></center>
+    <form method="post" style="text-align: center;">
+        Query:
+        <%if(bQuery==undefined){%>
+            <textarea rows="5" cols="30" name="selQuery"></textarea>
+        <%}else{%>
+            <textarea rows="5" cols="30" name="selQuery"><%=bQuery%></textarea>
+        <%}%>
+        <input type="submit" value="Run"/>        
+    </form>
+    <%if(er==undefined){%>
+        <%if(s!=undefined){%>        
+            <table style="margin-top: 50px;" align="center" border="1" width="60%">
+                <tr>
+                    <%for(let i=0;i<col.length;i++){%>
+                        <th>
+                            <%=col[i].name%>
+                        </th>                                            
+                    <%}%>
+                </tr>
+                <%for(let i=0;i<s.length;i++){%>
+                    <tr>
+                        <%for(let j=0;j<col.length;j++){%>
+                            <td><%=s[i][col[j].name]%></td>
+                        <%}%>
+                    </tr>
+                <%}%>
+            </table>
+            <table align="center">
+                <tr>
+                    <td><a href="/dqe?pageID=1"><<</a></td>
+                    <% if(PID==1){%>
+                        <td><</td>
+                    <%}else{%>
+                    <td><a href="/dqe?pageID=<%=parseInt(PID)-1 %>"><</a></td>
+                    <%}%>
+                    <td style="border-style: solid; border-width: 1px;"><%= PID%></td>
+                    <% let endPage=0%>
+                    <%if((parseInt(recCnt)/20)<1){%>
+                        <%endPage=1%>
+                    <%}else{%>
+                        <%endPage=(parseInt(recCnt)/20).toFixed(0)%>
+                    <%}%>
+                    <% if(PID==endPage){%>
+                        <td>></td>
+                    <%}else{%>
+                    <td><a href="/dqe?pageID=<%=parseInt(PID)+1%>">></a></td>
+                    <%}%>
+                    <td><a href="/dqe?pageID=<%=endPage%>">>></a></td>
+                </tr>
+            </table>      
+        <%}%>
+    <%}else{%>   
+        <div style="margin:0 a; margin-top: 20px;">
+            <%=er%> 
+        </div>    
+        <script>        
+            alert("Please Enter Valid Query Your Query Have Error")
+        </script>
+    <%}%>    
+</body>
+</html>
