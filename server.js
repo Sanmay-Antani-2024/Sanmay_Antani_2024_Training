@@ -5,13 +5,17 @@ const bodyp=require('body-parser');
 const url = require("url");
 const mysql=require("mysql");
 const { createHash } = require('crypto');
-const moment =require('moment')
+const moment =require('moment');
+const jwt=require('jsonwebtoken');
+const { error } = require('console');
+const cookieParser=require('cookie-parser')
 const PORT = 3000; 
 let timer=undefined
 let Linkstatus=1
 let randomString=undefined;
 let usid=undefined;
 app.set('view engine','ejs');
+app.use(cookieParser())
 app.use(express.static('images'));
 app.set('views', path.join(__dirname, 'views'));
 app.use(bodyp.urlencoded({extended:true}));
@@ -122,21 +126,41 @@ app.post("/login",async (req,res)=>{
     let sql1="select password,salt from Users_Regs_Master where email=?"
     await get_salt_password(data)
     if(result1!=undefined){
-        let sql2="select id from Users_Regs_Master where email=? and password=?"
-        con.query(sql2,[data.uname,createHash('md5').update(result1[0].salt+data.pass).digest("hex").toString()],function(err,result){
-            if(err){
-                throw err;
-            }else{
-                if(result.length==0){
-                    console.log("Incorrect User Name Or Password!!")
-                    res.send({status:404})
-                }else{
-                    console.log("Sucessfully logged in!")
-                    res.send({status:200})
-                }       
-                result1=result
-            }
-        });
+        let sql2="select id,email from Users_Regs_Master where email=? and password=?"        
+        await login()
+        function login(){
+            let pr=new Promise((resolve,reject)=>{
+                con.query(sql2,[data.uname,createHash('md5').update(result1[0].salt+data.pass).digest("hex").toString()],function(err,result){
+                    if(err){
+                        throw err;
+                    }else{
+                        if(result.length==0){
+                            console.log("Incorrect User Name Or Password!!")
+                            res.send({status:404})
+                        }else{
+                            console.log("Sucessfully logged in!")
+                            let token=jwt.sign(
+                                {
+                                    iss:"Sanmay",
+                                    iat:Date.now(),
+                                    exp:Date.now()+60000,
+                                    message:result[0].email
+                                },"12S03A",
+                                {
+                                    algorithm:"HS256"
+                                }                                                
+                            );
+                            console.log(token)
+                            res.cookie("token",token)                            
+                            res.send({status:200})
+                        }       
+                        result1=result
+                        resolve()
+                    }
+                });
+            }) 
+            return pr           
+        }
     }
     function get_salt_password(rec){
         let pr= new Promise((resolve,reject)=>{
@@ -158,6 +182,26 @@ app.post("/login",async (req,res)=>{
     }
     
 })
+
+function verification(req,res,next){   
+    if(req.cookies.token!=undefined){
+        let ver=jwt.verify(req.cookies.token,"12S03A",{
+            algorithm:"HS256"
+        });        
+        if(parseInt(ver.exp)>=Date.now()){            
+            next()
+        }else{
+            console.log("This is upper else")
+            res.redirect("/login")
+        }
+    }else{
+        console.log("This is lower else")
+        // console.log(req.Cookies.token)
+        res.redirect("/login")
+    }    
+}
+
+app.use("/homePage",verification)
 app.get("/homePage",(req,res)=>{
     res.render("homePage")
 })
@@ -176,22 +220,27 @@ app.post("/userData",(req,res)=>{
     })
 })
 
+app.use("/kookoo",verification)
 app.get("/kookoo",(req,res)=>{
     res.render("koo-koo-cube_SanmayAntani")
 })
 
+app.use("/tictactoe",verification)
 app.get("/tictactoe",(req,res)=>{
     res.render("tictactoe")
 })
 
+app.use("/DT",verification)
 app.get("/DT",(req,res)=>{
     res.render("Dynamic_Table_Sanmay_Antani")
 })
 
+app.use("/ET",verification)
 app.get("/ET",(req,res)=>{
     res.render("chessOfEvents")
 })
 
+app.use("/delSearch",verification)
 app.get('/delSearch',(req,res)=>{
     let lstDels=['_','{','$','}',':'];
     let sNames=""
@@ -380,6 +429,7 @@ app.get('/delSearch',(req,res)=>{
     }
 })
 
+app.use("/sorting",verification)
 app.get('/sorting',(req,res) => {  
     const fullUrl = url.parse(req.url, true);
     var curPage=fullUrl.query.pageID;
@@ -417,7 +467,7 @@ app.get('/sorting',(req,res) => {
     }
 });
 
-
+app.use("/filter",verification)
 app.get('/filter',(req,res)=>{
     const fullUrl = url.parse(req.url, true);
     var curPage=fullUrl.query.pageID;
@@ -503,6 +553,8 @@ app.get('/filter',(req,res)=>{
             });   
     }
 });
+
+app.use("/result",verification)
 app.get('/result',(req,res)=>{
     const fullUrl = url.parse(req.url, true);
     var curPage=fullUrl.query.pageID;
@@ -518,6 +570,8 @@ app.get('/result',(req,res)=>{
             }
         });   
 });
+
+app.use("/reportCard",verification)
 app.get('/reportCard',(req,res)=>{
     const fullUrl = url.parse(req.url, true);
     const sid=fullUrl.query.sid;    
@@ -532,7 +586,7 @@ app.get('/reportCard',(req,res)=>{
     });   
 });
 
-
+app.use("/jaf",verification)
 app.get('/jaf',(req,res)=>{
     let sql="select * from tblApplicantMaster"
     con.query(sql,function(err,result){
@@ -544,9 +598,12 @@ app.get('/jaf',(req,res)=>{
     });    
 })
 
+app.use("/i",verification)
 app.get('/i',(req,res)=>{
     res.render("insert_applicant") 
 })
+
+app.use("/insert",verification)
 app.get('/insert',(req,res)=>{
     const fullUrl = url.parse(req.url, true);
     let id=fullUrl.query.id
@@ -596,6 +653,7 @@ app.get('/insert',(req,res)=>{
 
 })
 
+app.use("/insert/basic",verification)
 app.post('/insert/basic',(req,res)=>{
     let data = req.body;
     console.log(data);   
@@ -615,6 +673,7 @@ app.post('/insert/basic',(req,res)=>{
     })  
 })
 
+app.use("/display/basic",verification)
 app.post('/display/basic',(req,res)=>{
     let data=req.body
     let sql="select * from tblApplicantMaster where applID='"+data.uid+"'"
@@ -629,6 +688,8 @@ app.post('/display/basic',(req,res)=>{
     });   
 })
 let uid=undefined
+
+app.use("/update/basic",verification)
 app.post('/update/basic',(req,res)=>{
     let data=req.body
     let oldDate=data.txtDOB
@@ -645,6 +706,7 @@ app.post('/update/basic',(req,res)=>{
     res.end();
 })
 
+app.use("/display/edu",verification)
 app.post('/display/edu',(req,res)=>{
     let data=req.body
     console.log(uid)
@@ -659,6 +721,7 @@ app.post('/display/edu',(req,res)=>{
     });   
 })
 
+app.use("/update/edu",verification)
 app.post('/update/edu',(req,res)=>{
     sql=""
     let data=req.body    
@@ -713,6 +776,7 @@ app.post('/update/edu',(req,res)=>{
   
 })
 
+app.use("/insert/edu",verification)
 app.post('/insert/edu',(req,res)=>{
     let data = req.body;
     sql=""
@@ -744,6 +808,7 @@ app.post('/insert/edu',(req,res)=>{
     });
 })
 
+app.use("/display/Wexp",verification)
 app.post('/display/Wexp',(req,res)=>{
     let sql="select * from WorkExp where applID='"+uid+"'"
     con.query(sql,function(err,result){
@@ -756,6 +821,7 @@ app.post('/display/Wexp',(req,res)=>{
     });   
 })
 
+app.use("/update/Wexp",verification)
 app.post('/update/Wexp',(req,res)=>{
     let data = req.body;
     sql=""
@@ -792,6 +858,7 @@ app.post('/update/Wexp',(req,res)=>{
     res.end()
 })
 
+app.use("/insert/Wexp",verification)
 app.post('/insert/Wexp',(req,res)=>{
     let data = req.body;
     sql=""
@@ -818,6 +885,7 @@ app.post('/insert/Wexp',(req,res)=>{
     })
 })
 
+app.use("/display/langKnown",verification)
 app.post('/display/langKnown',(req,res)=>{
     let sql="select * from lKnown where applID='"+uid+"'"
     con.query(sql,function(err,result){
@@ -830,6 +898,7 @@ app.post('/display/langKnown',(req,res)=>{
     });   
 })
 
+app.use("/insert/langKnown",verification)
 app.post('/insert/langKnown',(req,res)=>{
     let data=req.body
     chkLangs=data.langs.split(',')
@@ -866,6 +935,7 @@ app.post('/insert/langKnown',(req,res)=>{
 
 });
 
+app.use("/update/langKnown",verification)
 app.post('/update/langKnown',(req,res)=>{
     let data=req.body
     chkLangs=data.langs.split(',')
@@ -914,6 +984,7 @@ app.post('/update/langKnown',(req,res)=>{
 
 });
 
+app.use("/display/techKnown",verification)
 app.post('/display/techKnown',(req,res)=>{
     let sql="select * from techKnown where applID='"+uid+"'"
     con.query(sql,function(err,result){
@@ -926,6 +997,7 @@ app.post('/display/techKnown',(req,res)=>{
     });  
 })
 
+app.use("/update/techKnown",verification)
 app.post('/update/techKnown',(req,res)=>{
     let data=req.body
     console.log(data)
@@ -957,6 +1029,7 @@ app.post('/update/techKnown',(req,res)=>{
     res.end()
 })
 
+app.use("/insert/techKnown",verification)
 app.post('/insert/techKnown',(req,res)=>{    
     let data=req.body
     console.log(data)
@@ -976,6 +1049,7 @@ app.post('/insert/techKnown',(req,res)=>{
     })
 })
 
+app.use("/display/ref",verification)
 app.post('/display/ref',(req,res)=>{
     let sql="select * from ref where applID='"+uid+"'"
     con.query(sql,function(err,result){
@@ -988,6 +1062,7 @@ app.post('/display/ref',(req,res)=>{
     });  
 })
 
+app.use("/update/ref",verification)
 app.post('/update/ref',(req,res)=>{
     let data=req.body  
     let refNames=req.body.refName.split(",")
@@ -1020,6 +1095,7 @@ app.post('/update/ref',(req,res)=>{
     res.end()
 })
 
+app.use("/insert/ref",verification)
 app.post('/insert/ref',(req,res)=>{  
     let data=req.body  
     let refNames=req.body.refName.split(",")
@@ -1040,6 +1116,7 @@ app.post('/insert/ref',(req,res)=>{
     })
 })
 
+app.use("/display/pref",verification)
 app.post('/display/pref',(req,res)=>{
     let sql="select * from prefer where applID='"+uid+"'"
     con.query(sql,function(err,result){
@@ -1052,6 +1129,7 @@ app.post('/display/pref',(req,res)=>{
     });  
 })
 
+app.use("/update/pref",verification)
 app.post('/update/pref',(req,res)=>{
     let data=req.body         
     sql="update prefer set noticePeriod='"+data.txtNP+"',expCTC='"+data.txtExpCTC+"',currCTC='"+data.txtCurrCTC+"',deptID='"+data.selpDept+"',loc='"+data.selploc+"' where applID='"+uid+"'"
@@ -1078,6 +1156,7 @@ app.post('/update/pref',(req,res)=>{
     })        
 })
 
+app.use("/insert/pref",verification)
 app.post('/insert/pref',(req,res)=>{  
     let data=req.body         
         sql="insert into prefer(applID,loc,noticePeriod,expCTC,currCTC,deptID) values("+data.id+",'"+data.selploc+"',"+data.txtNP+","+data.txtExpCTC+","+data.txtCurrCTC+","+data.selpDept+")"
@@ -1092,6 +1171,7 @@ app.post('/insert/pref',(req,res)=>{
         })            
 })            
 
+app.use("/insert",verification)
 app.post('/insert',(req,res)=>{      
     let data=req.body
     let oldDate=data.txtDOB
@@ -1242,6 +1322,7 @@ var sql=" ";
 var sqlNoLimitCnt=0;
 var baseSql=" ";
 
+app.use("/dqe",verification)
 app.post('/dqe',(req,res)=>{    
     console.log(req.body)
     baseSql=req.body.selQuery
