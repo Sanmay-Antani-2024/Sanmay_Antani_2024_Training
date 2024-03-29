@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h3 id="Greet">Hello </h3>
+    <h3 id="Greet">Hello <%=fname%></h3>
     <ul>
         <li><a href="/DT">Dynamic Table</a></li>
         <li><a href="/ET">Event Table</a></li>
@@ -17,11 +17,9 @@
         <li><a href="/sorting">Sorting With Filteration with pagination</a></li>
         <li><a href="/filter">Searching With Filteration Panel with pagination</a></li> 
         <li><a href="/jaf">Job Application Form</a></li> 
-    </ul>        
-    <script>
-        document.getElementById("Greet").innerHTML+=sessionStorage.getItem("user").Fname
-        console.log("at home Page",JSON.stringify(sessionStorage.getItem("user")))            
-    </script>
+        <li><a href="/">Make new account</a></li> 
+        <li><a href="/login">Login into other account</a></li> 
+        <li><a href="/logout">Log Out</a></li> 
+    </ul>                
 </body>
 </html>
-<!-- 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 -->

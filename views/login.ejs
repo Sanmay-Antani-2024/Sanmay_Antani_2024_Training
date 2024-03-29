@@ -42,20 +42,6 @@
                 })
                 if(fetchPromise.status==200){
                     document.getElementById("msg").innerHTML=""   
-                    let fd2= new URLSearchParams()
-                    fd2.append("uname",document.getElementById("uname").value)                 
-                    let fetchPromise2=await fetch("/userData",{
-                        method:"post",
-                        body:fd2,
-                        headers:{
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                        }
-                    })
-                    .then((response)=>{
-                        return response.json()
-                    })
-                    await sessionStorage.setItem("user",fetchPromise2.res[0])
-                    console.log("at home Page",JSON.stringify(sessionStorage.getItem("user")))
                     window.location.href="http://localhost:3000/homePage"
                 }else{
                     document.getElementById("msg").innerHTML="Incorrect UserName or password!!"

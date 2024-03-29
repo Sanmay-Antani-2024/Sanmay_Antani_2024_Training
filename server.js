@@ -203,21 +203,23 @@ function verification(req,res,next){
 
 app.use("/homePage",verification)
 app.get("/homePage",(req,res)=>{
-    res.render("homePage")
-})
-
-app.post("/userData",(req,res)=>{
-    let userName=req.body.uname;
-    console.log("User Name: "+userName)
     let sql="select * from Users_Regs_Master where email=?"
-    con.query(sql,[userName],(err,result)=>{
+    let ver=jwt.verify(req.cookies.token,"12S03A",{
+        algorithm:"HS256"
+    }); 
+    con.query(sql,[ver.message],(err,result)=>{
         if(err){
             throw err
         }else{
-            console.log("Yess")
-            res.send({res:result})
+            console.log(result[0].Fname)
+            res.render("homePage",{fname:result[0].Fname})
         }
     })
+})
+
+app.get("/logout",(req,res)=>{
+    res.clearCookie("token")
+    res.redirect("/login")
 })
 
 app.use("/kookoo",verification)
