@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center><h3>Name:Sanmay Antani</br>Employee ID:24DEV037<br/>Date:11-03-2024</h3></center>
+    <table id="tbl" border="1" align="center">
+                        
+    </table> 
+    <p style="cursor: pointer;" onclick="showCommentsClicked()">Show Comments</p>  
+    <div id="comments">
+
+    </div> 
+    <p style="text-align:center;"><a href="/homepage">Home Page</a></p>
+    <script>                    
+        let urlParams = new URLSearchParams(window.location.search);
+        let myParam = urlParams.get('id');
+        console.log(myParam)
+        const tbl=document.getElementById("tbl")
+        const fetchPromise=fetch("https://jsonplaceholder.org/posts/"+myParam);
+        fetchPromise.then((response)=>{
+            return response.json()
+        }).then((jsonResponse)=>{
+            const keys=Object.keys(jsonResponse)
+            const vals=Object.values(jsonResponse)
+            keys.forEach((item,index,array)=> {
+                const row=document.createElement("tr")
+                const label=document.createElement("th")                
+                const data=document.createElement("td")                
+                label.innerHTML=item
+                if([5,6].includes(index)){
+                    const img=document.createElement("img")
+                    img.setAttribute("src",vals[index])
+                    data.appendChild(img)
+                }else{
+                    data.innerHTML=vals[index]
+                }
+                row.appendChild(label)
+                row.appendChild(data)
+                tbl.appendChild(row)                
+            });            
+        })
+        function showCommentsClicked(){
+            const fetchComments=fetch("https://jsonplaceholder.org/comments");
+            fetchComments.then((response)=>{
+                return response.json()
+            })        
+            .then((jsonResponse)=>{           
+                let mainDiv=document.getElementById("comments")
+                jsonResponse.forEach((item,index,array)=>{
+                    console.log(index)
+                    if(jsonResponse[index].postId==myParam){
+                        let newDiv=document.createElement("div")
+                        newDiv.setAttribute("style","border-style:solid; border-width:1px; border-color:black; border-radius:5%;")
+                        let table=document.createElement("table")
+                        table.setAttribute("id",index)
+                        let keys=Object.keys(jsonResponse[index])
+                        let vals=Object.values(jsonResponse[index])
+                        keys.forEach((item2,index2,array2)=>{
+                            let row=document.createElement("tr")
+                            row.setAttribute("id",index2+item2)
+                            let heading=document.createElement("th")
+                            heading.innerHTML=item2
+                            let data=document.createElement("td")
+                            data.setAttribute("id",index2+vals[index2])
+                            data.innerHTML=vals[index2]
+                            row.appendChild(heading)
+                            row.appendChild(data)  
+                            table.appendChild(row)                          
+                        })                        
+                        newDiv.appendChild(table)
+                        mainDiv.appendChild(newDiv)
+                    }                   
+                })               
+            })
+        }
+    </script>
+</body>
+</html>

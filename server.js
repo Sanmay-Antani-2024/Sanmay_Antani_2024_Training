@@ -143,7 +143,7 @@ app.post("/login",async (req,res)=>{
                                 {
                                     iss:"Sanmay",
                                     iat:Date.now(),
-                                    exp:Date.now()+60000,
+                                    exp:Date.now()+(60*60000),
                                     message:result[0].email
                                 },"12S03A",
                                 {
@@ -1373,6 +1373,15 @@ app.get('/dqe',(req,res)=>{
     }else{
         res.render('dynamic',{s:undefined,PID:curPage,er:undefined,bQuery:undefined})
     }    
+})
+
+app.get("/api",(req,res)=>{
+    const fullUrl = url.parse(req.url,true);
+    if(fullUrl.query.id==undefined){
+        res.render("userData")
+    }else{
+        res.render("searchUser")
+    }
 })
 
 

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>    
+    let pno=1
+    let sbtnClicked=0
+    let len=100
+    function nextPageCLicked(){
+        let limit=(len/10).toFixed(0)
+        if(limit<1){
+            limit=1
+        }
+        if(pno!=limit){
+            pno=parseInt(pno)+1
+            document.getElementById("pageNo").innerHTML=pno
+            if(sbtnClicked==1){
+                searchClicked()
+            }else{
+                showUser()
+            }
+        }
+    }   
+    function prePageCLicked(){        
+        if(pno!=1){
+            pno=parseInt(pno)-1
+            document.getElementById("pageNo").innerHTML=pno
+            if(sbtnClicked==1){
+                searchClicked()
+            }else{
+                showUser()
+            }
+        }
+    }    
+    function firstPageCLicked(){
+        pno=1
+        document.getElementById("pageNo").innerHTML=pno
+        if(sbtnClicked==1){
+                searchClicked()
+            }else{
+                showUser()
+            }
+    }
+    function lastPageCLicked(){
+        let limit=(len/10).toFixed(0)
+        if(limit<1){
+            limit=1
+        }
+        pno=limit
+        document.getElementById("pageNo").innerHTML=pno
+        if(sbtnClicked==1){
+            searchClicked()
+        }else{
+            showUser()
+        }
+    }
+    function showUser(){     
+        const fetchPromise=fetch( 
+            "https://jsonplaceholder.org/posts",
+            );   
+        const tbl=document.getElementById("dataTable");        
+        fetchPromise.then((response)=>{
+            return response.json()
+        }).then((jsonResponse)=>{
+            const tbl=document.getElementById("dataTable");
+            tbl.innerHTML=""
+            let row=document.createElement("tr");
+            jsonResponse=jsonResponse.slice((parseInt(pno)-1)*10,((parseInt(pno)-1)*10)+10)            
+            const titles=Object.keys(jsonResponse[0]);
+            // console.log(titles)
+            row.setAttribute("id","titles")
+            titles.forEach((item,index,array)=>{
+                if([3,7,8,9,10].includes(index)){
+                    let heading=document.createElement("th");
+                    heading.setAttribute("id","heading"+index)
+                    heading.innerHTML=item;                
+                    row.appendChild(heading)
+                }
+            })        
+            tbl.appendChild(row)                                
+            jsonResponse.forEach((item,index,array)=>{
+                let dataRow=document.createElement("tr")
+                dataRow.setAttribute("id","dataRow"+item.id)
+                let vals=Object.values(item)
+                vals.forEach((item2,index2,array2)=>{
+                    if([3,7,8,9,10].includes(index2)){
+                        let dataCell=document.createElement("td")
+                        dataCell.setAttribute("id","dataCell"+item.id+index2)
+                        // console.log(index2+" : "+item2+"\n")                                       
+                        dataCell.innerHTML=item2                                                                
+                        dataRow.appendChild(dataCell)                                                   
+                    }                
+                })
+                let anchor=document.createElement("a")
+                anchor.setAttribute("href","/api?id="+item.id)
+                let detail=document.createElement("td")
+                detail.innerHTML="Show Details"
+                anchor.appendChild(detail)
+                dataRow.appendChild(anchor)
+                tbl.appendChild(dataRow)
+            })
+            // document.getElementById("resp").innerHTML= JSON.stringify(jsonResponse);
+        }).catch(((err)=>{
+            console.log(err);
+        }))
+    }    
+    showUser();
+
+    function searchClicked(){
+        let cnt=0
+        if(sbtnClicked==0){
+            pno=1
+            document.getElementById("pageNo").innerHTML="1"
+        }
+        sbtnClicked=1        
+        document.getElementById("dataTable").innerHTML=""
+        let sData=document.getElementById("searchtitle").value
+        const fetchPromise=fetch( 
+            "https://jsonplaceholder.org/posts",
+            );   
+        const tbl=document.getElementById("dataTable");        
+        fetchPromise.then((response)=>{
+            return response.json()
+        }).then((jsonResponse)=>{
+            const tbl=document.getElementById("dataTable");
+            tbl.innerHTML=""
+            let row=document.createElement("tr");
+            let tempArr=[]
+            jsonResponse.forEach((item,index,array)=>{ 
+                if(jsonResponse[index].title.search(sData)!=-1){
+                    cnt++
+                    tempArr.push(jsonResponse[index])
+                }
+            })
+            tempArr=tempArr.slice((parseInt(pno)-1)*10,((parseInt(pno)-1)*10)+10)            
+            const titles=Object.keys(tempArr[0]);
+            // console.log(titles)
+            row.setAttribute("id","titles")
+            titles.forEach((item,index,array)=>{                
+                if([3,7,8,9,10].includes(index)){
+                    let heading=document.createElement("th");
+                    heading.setAttribute("id","heading"+index)
+                    heading.innerHTML=item;                
+                    row.appendChild(heading)
+                }
+            })        
+            tbl.appendChild(row)                                
+            tempArr.forEach((item,index,array)=>{                
+                let dataRow=document.createElement("tr")
+                dataRow.setAttribute("id","dataRow"+item.id)
+                let vals=Object.values(item)         
+                if((item.title).search(sData)!=-1){              
+                    vals.forEach((item2,index2,array2)=>{                    
+                        if([3,7,8,9,10].includes(index2)){
+                            let dataCell=document.createElement("td")
+                            dataCell.setAttribute("id","dataCell"+item.id+index2)
+                            // console.log(index2+" : "+item2+"\n")                                       
+                            dataCell.innerHTML=item2                                                                
+                            dataRow.appendChild(dataCell)                                                   
+                        }                
+                    })
+                    let anchor=document.createElement("a")
+                    anchor.setAttribute("href","/?id="+item.id)
+                    let detail=document.createElement("td")
+                    detail.innerHTML="Show Details"
+                    anchor.appendChild(detail)
+                    dataRow.appendChild(anchor)
+                    tbl.appendChild(dataRow)
+                }
+            })
+            len=cnt
+            console.log("len: "+len)
+            // document.getElementById("resp").innerHTML= JSON.stringify(tempArr);
+        }).catch(((err)=>{
+            console.log(err);
+        }))
+        
+    }
+</script>
+<body>    
+    <center><h3>Name:Sanmay Antani</br>Employee ID:24DEV037<br/>Date:11-03-2024</h3></center>
+    <table align="center">
+        <tr>
+            <td><input type="text" id="searchtitle" placeholder="Enter Title"/></td>
+            <td><p style="cursor: pointer;" onclick="searchClicked()">Search</p></td>
+        </tr>
+    </table>
+    <table border="1" height="50%" align="center" id="dataTable">
+                
+    </table>
+    <table align="center">
+        <tr>
+            <td style="cursor: pointer; border-style: solid; border-color: black;"style="border-style: solid; border-color: black;" id="firstPage" onClick="firstPageCLicked()">
+                <<
+            </td>
+            <td style="cursor: pointer; border-style: solid; border-color: black;" id="previousPage" onClick="prePageCLicked()">
+                <
+            </td>
+            <td id="pageNo" style="border-style: solid; border-color: black;">
+            1
+            </td>
+            <td id="nextPage" style="cursor: pointer; border-style: solid; border-color: black;" onClick="nextPageCLicked()">
+                >
+            </td>
+            <td style="cursor: pointer; border-style: solid; border-color: black;" id="lastPage" onClick="lastPageCLicked()">
+                >>
+            </td>
+        </tr>
+    </table>
+    <p style="text-align:center;"><a href="/homepage">Home Page</a></p>
+</body>
+</html>
