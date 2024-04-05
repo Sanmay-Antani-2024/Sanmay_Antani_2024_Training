@@ -30,7 +30,7 @@
                 let fd=new URLSearchParams()
                 fd.append("uname",document.getElementById("uname").value)
                 fd.append("pass",document.getElementById("pass").value)
-                let fetchPromise=await fetch("/login",{
+                let fetchPromise=await fetch("/login/login",{
                     method:"post",
                     body:fd,
                     headers:{
@@ -42,7 +42,7 @@
                 })
                 if(fetchPromise.status==200){
                     document.getElementById("msg").innerHTML=""   
-                    window.location.href="http://localhost:3000/homePage"
+                    window.location.href="http://localhost:3000/homePage/homePage"
                 }else{
                     document.getElementById("msg").innerHTML="Incorrect UserName or password!!"
                 }

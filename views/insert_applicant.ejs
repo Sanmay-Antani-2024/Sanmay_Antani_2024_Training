@@ -532,7 +532,7 @@
                 </td>
             </tr>
         </table></div> 
-        <p style="text-align:center;"><a href="/homepage">Home Page</a></p>   
+        <p style="text-align:center;"><a href="/homepage/homePage">Home Page</a></p>  
     <script>
         let pg=0
         let id=undefined
@@ -546,7 +546,7 @@
                 updateID = urlUpdateParams.get('id');
                 formData.append("uid",updateID)
                 if(pg==0){                    
-                    let fetchPromise=await fetch("/display/basic",{
+                    let fetchPromise=await fetch("/jobApp/display/basic",{
                         method:"post",
                         body:formData,                        
                         headers: {
@@ -576,7 +576,6 @@
         async function next(){
             pg++;                
             if(pg==1){
-
                 const fName=document.getElementById("txtFname");
                 const lName=document.getElementById("txtLname");
                 const design=document.getElementById("txtDesig");
@@ -681,10 +680,10 @@
                     formData.append("txtZip",document.getElementById("txtZip").value)
                     formData.append("RS",document.getElementById("RS").value)
                     formData.append("txtDOB",document.getElementById("txtDOB").value)
-                    console.log(formData)                
+                    // console.log(formData)                
                     if(url.includes("id")){ 
                         formData.append("id",updateID)
-                        let fetchPromise=await fetch("/update/basic",{
+                        let fetchPromise=await fetch("/jobApp/update/basic",{
                             method:"post",
                             body:formData,
                             headers: {
@@ -694,7 +693,7 @@
                         document.getElementById("bd").setAttribute("hidden","true")
                         document.getElementById("edu").removeAttribute("hidden")  
                         console.log(updateID) 
-                        let fetchPromiseDisplay=await fetch("/display/edu",{
+                        let fetchPromiseDisplay=await fetch("/jobApp/display/edu",{
                             method:"post",
                             body:{uid:updateID},                        
                             headers: {
@@ -727,8 +726,8 @@
                                 document.getElementById("numPerMaster").setAttribute("value",item.percent)
                             }
                         })                             
-                    }else{
-                        let fetchPromise=await fetch("/insert/basic",{
+                    }else{                        
+                        let fetchPromise=await fetch("/jobApp/insert/basic",{
                         method:"post",
                         body:formData,
                         headers: {
@@ -737,7 +736,7 @@
                         })            
                         .then((response) => {
                             return response.json();
-                        })
+                        })                        
                         console.log(fetchPromise.id)
                         id=fetchPromise.id   
                         document.getElementById("bd").setAttribute("hidden","true")
@@ -875,7 +874,7 @@
                     formData.append("per",[document.getElementById("numPerSSC").value,document.getElementById("numPerHSC").value,document.getElementById("numPerBachelor").value,document.getElementById("numPerMaster").value])
                     if(url.includes("id")){
                         console.log("This") 
-                        let fetchPromise=await fetch("/update/edu",{
+                        let fetchPromise=await fetch("/jobApp/update/edu",{
                             method:"post",
                             body:formData,
                             headers: {
@@ -884,7 +883,7 @@
                         })                             
                         document.getElementById("edu").setAttribute("hidden","true")                                
                         document.getElementById("wExp").removeAttribute("hidden")   
-                        let fetchDisplayPromise=await fetch("/display/Wexp",{
+                        let fetchDisplayPromise=await fetch("/jobApp/display/Wexp",{
                             method:"post",
                             body:formData,
                             headers: {
@@ -901,7 +900,7 @@
                         })     
                     }else{
                         formData.append("id",id)
-                        let fetchPromise=fetch("/insert/edu",{
+                        let fetchPromise=fetch("/jobApp/insert/edu",{
                             method:"post",
                             body:formData,
                             headers: {
@@ -977,7 +976,7 @@
                     formData.append("froms",froms)
                     formData.append("tos",tos)
                     if(url.includes("id")){
-                        let fetchPromise=fetch("/update/Wexp",{
+                        let fetchPromise=fetch("jobApp/update/Wexp",{
                             method:"post",
                             body:formData,
                             headers: {
@@ -986,7 +985,7 @@
                         }) 
                         document.getElementById("wExp").setAttribute("hidden","true")      
                         document.getElementById("fLKnown").removeAttribute("hidden") 
-                        let displayfetchPromise=await fetch("/display/langKnown",{
+                        let displayfetchPromise=await fetch("/jobApp/display/langKnown",{
                             method:"post",
                             headers: {
                                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -1015,7 +1014,7 @@
                         })
                     }else{
                         formData.append("id",id)
-                        let fetchPromise=fetch("/insert/Wexp",{
+                        let fetchPromise=fetch("/jobApp/insert/Wexp",{
                             method:"post",
                             body:formData,
                             headers: {
@@ -1052,7 +1051,7 @@
                 formData.append("writes",checkWrites)
                 formData.append("speaks",checkSpeaks)   
                 if(url.includes("id")){
-                    let fetchPromise= fetch("/update/langKnown",{
+                    let fetchPromise= fetch("/jobApp/update/langKnown",{
                         method:"post",
                         body:formData,
                         headers: {
@@ -1064,7 +1063,7 @@
                     })
                     document.getElementById("fLKnown").setAttribute("hidden","true")
                     document.getElementById("techKnown").removeAttribute("hidden")
-                    let displayfetchPromise=await fetch("/display/techKnown",{
+                    let displayfetchPromise=await fetch("/jobApp/display/techKnown",{
                         method:"post",                        
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded'
@@ -1088,7 +1087,7 @@
                     })                    
                 }else{
                     formData.append("id",id)             
-                    let fetchPromise=fetch("/insert/langKnown",{
+                    let fetchPromise=fetch("/jobApp/insert/langKnown",{
                         method:"post",
                         body:formData,
                         headers: {
@@ -1116,7 +1115,7 @@
                 })
                 formData.append("tech",techs)
                 if(url.includes("id")){
-                    let fetchPromise=await fetch("/update/techKnown",{
+                    let fetchPromise=await fetch("/jobApp/update/techKnown",{
                         method:"post",
                         body:formData,
                         headers: {
@@ -1125,7 +1124,7 @@
                     })  
                     document.getElementById("techKnown").setAttribute("hidden","true")
                     document.getElementById("ref").removeAttribute("hidden") 
-                    let displayfetchPromise=await fetch("/display/ref",{
+                    let displayfetchPromise=await fetch("/jobApp/display/ref",{
                         method:"post",                
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded'
@@ -1140,7 +1139,7 @@
                     })   
                 }else{
                     formData.append("id",id)      
-                    let fetchPromise=fetch("/insert/techKnown",{
+                    let fetchPromise=fetch("/jobApp/insert/techKnown",{
                         method:"post",
                         body:formData,
                         headers: {
@@ -1210,7 +1209,7 @@
                     formData.append("refNum",refNums)
                     formData.append("refrel",refrels)
                     if(url.includes("id")){
-                        let fetchPromise=await fetch("/update/ref",{
+                        let fetchPromise=await fetch("/jobApp/update/ref",{
                             method:"post",
                             body:formData,
                             headers: {
@@ -1219,7 +1218,7 @@
                         })  
                         document.getElementById("ref").setAttribute("hidden","true")
                         document.getElementById("pref").removeAttribute("hidden")
-                        let displayfetchPromise=await fetch("/display/pref",{
+                        let displayfetchPromise=await fetch("/jobApp/display/pref",{
                             method:"post",                
                             headers: {
                                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -1236,7 +1235,7 @@
                     }
                     else{
                         formData.append("id",id)
-                        let fetchPromise=fetch("/insert/ref",{
+                        let fetchPromise=fetch("/jobApp/insert/ref",{
                             method:"post",
                             body:formData,
                             headers: {
@@ -1277,7 +1276,7 @@
                     formData.append("txtExpCTC",document.getElementById("txtExpCTC").value)
                     formData.append("txtCurrCTC",document.getElementById("txtCurrCTC").value)
                     if(url.includes("id")){
-                        let fetchPromise= await fetch("/update/pref",{
+                        let fetchPromise= await fetch("/jobApp/update/pref",{
                             method:"post",
                             body:formData,
                             headers: {
@@ -1287,12 +1286,12 @@
                             return response.json();                    
                         }) 
                         if(fetchPromise.status==200){
-                            window.location.replace("http://localhost:3000/jaf");
+                            window.location.replace("http://localhost:3000/jobApp/jaf");
                         }                         
                     }
                     else{
                         formData.append("id",id)
-                        let fetchPromise=await fetch("/insert/pref",{
+                        let fetchPromise=await fetch("/jobApp/insert/pref",{
                             method:"post",
                             body:formData,
                             headers: {
@@ -1303,7 +1302,7 @@
                             return response.json();                    
                         })  
                         if(fetchPromise.status==200){
-                            window.location.replace("http://localhost:3000/jaf");
+                            window.location.replace("http://localhost:3000/jobApp/jaf");
                         } 
                     }                
                                   

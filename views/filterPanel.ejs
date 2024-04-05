@@ -133,11 +133,11 @@
     <%if(studentN==undefined && andor==undefined){%>
         <table align="center" style="text-align: center;">
             <tr>                        
-                <td><a href="/filter?pageID=1&selMonth=<%=selMonth%>"><<</a></td>
+                <td><a href="/filter/filter?pageID=1&selMonth=<%=selMonth%>"><<</a></td>
                 <% if(PID==1){%>
                     <td><</td>                        
                 <%}else{%>  
-                    <td><a href="/filter?pageID=<%=parseInt(PID)-1%>&selMonth=<%=selMonth%>"><</a></td>
+                    <td><a href="/filter/filter?pageID=<%=parseInt(PID)-1%>&selMonth=<%=selMonth%>"><</a></td>
                 <%}%>
                 <td style="border-style: solid; border-width: 1px;"><%= PID%></td>
                 <%let lastPage=parseInt((resLen/20).toFixed(0))%>
@@ -147,19 +147,19 @@
                 <% if(PID==lastPage){%>
                     <td>></td>
                 <%}else{%>
-                    <td><a href="/filter?pageID=<%=parseInt(PID)+1 %>&selMonth=<%=selMonth%>">></a></td>
+                    <td><a href="/filter/filter?pageID=<%=parseInt(PID)+1 %>&selMonth=<%=selMonth%>">></a></td>
                 <%}%>            
-                <td><a href="/filter?pageID=<%=lastPage%>&selMonth=<%=selMonth%>">>></a></td>            
+                <td><a href="/filter/filter?pageID=<%=lastPage%>&selMonth=<%=selMonth%>">>></a></td>            
             </tr>
         </table>
     <%}else{%>    
         <table align="center" style="text-align: center;">
             <tr>                        
-                <td><a href="/filter?pageID=1&selMonth=<%=selMonth%>&filterSname=<%=studentN%>&filterPresentDayFrom=<%=pDf%>&filterPresentDayTo=<%=pDt%>&filterPresentPerFrom=<%=pPf%>&filterPresentPerTo=<%=pPt%>&selAndOr=<%=andor%>"><<</a></td>
+                <td><a href="/filter/filter?pageID=1&selMonth=<%=selMonth%>&filterSname=<%=studentN%>&filterPresentDayFrom=<%=pDf%>&filterPresentDayTo=<%=pDt%>&filterPresentPerFrom=<%=pPf%>&filterPresentPerTo=<%=pPt%>&selAndOr=<%=andor%>"><<</a></td>
                 <% if(PID==1){%>
                     <td><</td>                        
                 <%}else{%>  
-                    <td><a href="/filter?pageID=<%=parseInt(PID)-1%>&selMonth=<%=selMonth%>&filterSname=<%=studentN%>&filterPresentDayFrom=<%=pDf%>&filterPresentDayTo=<%=pDt%>&filterPresentPerFrom=<%=pPf%>&filterPresentPerTo=<%=pPt%>&selAndOr=<%=andor%>"><</a></td>
+                    <td><a href="/filter/filter?pageID=<%=parseInt(PID)-1%>&selMonth=<%=selMonth%>&filterSname=<%=studentN%>&filterPresentDayFrom=<%=pDf%>&filterPresentDayTo=<%=pDt%>&filterPresentPerFrom=<%=pPf%>&filterPresentPerTo=<%=pPt%>&selAndOr=<%=andor%>"><</a></td>
                 <%}%>
                 <td style="border-style: solid; border-width: 1px;"><%= PID%></td>
                 <%let lastPage=parseInt((resLen/20).toFixed(0))%>
@@ -169,12 +169,12 @@
                 <% if(PID==lastPage){%>
                     <td>></td>
                 <%}else{%>
-                    <td><a href="/filter?pageID=<%=parseInt(PID)+1 %>&selMonth=<%=selMonth%>&filterSname=<%=studentN%>&filterPresentDayFrom=<%=pDf%>&filterPresentDayTo=<%=pDt%>&filterPresentPerFrom=<%=pPf%>&filterPresentPerTo=<%=pPt%>&selAndOr=<%=andor%>">></a></td>
+                    <td><a href="/filter/filter?pageID=<%=parseInt(PID)+1 %>&selMonth=<%=selMonth%>&filterSname=<%=studentN%>&filterPresentDayFrom=<%=pDf%>&filterPresentDayTo=<%=pDt%>&filterPresentPerFrom=<%=pPf%>&filterPresentPerTo=<%=pPt%>&selAndOr=<%=andor%>">></a></td>
                 <%}%>            
-                <td><a href="/filter?pageID=<%=lastPage%>&selMonth=<%=selMonth%>&filterSname=<%=studentN%>&filterPresentDayFrom=<%=pDf%>&filterPresentDayTo=<%=pDt%>&filterPresentPerFrom=<%=pPf%>&filterPresentPerTo=<%=pPt%>&selAndOr=<%=andor%>">>></a></td>            
+                <td><a href="/filter/filter?pageID=<%=lastPage%>&selMonth=<%=selMonth%>&filterSname=<%=studentN%>&filterPresentDayFrom=<%=pDf%>&filterPresentDayTo=<%=pDt%>&filterPresentPerFrom=<%=pPf%>&filterPresentPerTo=<%=pPt%>&selAndOr=<%=andor%>">>></a></td>            
             </tr>
         </table>
     <%}%>
-    <p style="text-align:center;"><a href="/homepage">Home Page</a></p>
+    <p style="text-align:center;"><a href="/homepage/homePage">Home Page</a></p>
 </body>
 </html>

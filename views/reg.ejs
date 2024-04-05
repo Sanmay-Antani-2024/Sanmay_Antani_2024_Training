@@ -33,7 +33,7 @@
             </table>
         </form>
     </div>
-    <p style="text-align: center;">Allready have account do <a href="/login">sign in</a></p>
+    <p style="text-align: center;">Allready have account do <a href="/login/login">sign in</a></p>
     <p style="text-align: center;"><a id="link"></a></p>
     <script>
         async function reg(){
@@ -58,7 +58,7 @@
                 document.getElementById("link").setAttribute("href","http://localhost:3000/"+fetchPromise.random)
             }else if(fetchPromise.status==201){
                 document.getElementById("link").innerHTML="User Is Allready Exists and Active Click Here and please Do Login !!"
-                document.getElementById("link").setAttribute("href","http://localhost:3000/login")
+                document.getElementById("link").setAttribute("href","http://localhost:3000/login/login")
             }else if(fetchPromise.status==202){
                 document.getElementById("link").innerHTML="User Is Allready Exists but inactive please check your mail and click on varification link !!"
             }

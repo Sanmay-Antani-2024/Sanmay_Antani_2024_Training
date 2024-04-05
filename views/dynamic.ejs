@@ -36,11 +36,11 @@
             </table>
             <table align="center">
                 <tr>
-                    <td><a href="/dqe?pageID=1"><<</a></td>
+                    <td><a href="/dqe/dqe?pageID=1"><<</a></td>
                     <% if(PID==1){%>
                         <td><</td>
                     <%}else{%>
-                    <td><a href="/dqe?pageID=<%=parseInt(PID)-1 %>"><</a></td>
+                    <td><a href="/dqe/dqe?pageID=<%=parseInt(PID)-1 %>"><</a></td>
                     <%}%>
                     <td style="border-style: solid; border-width: 1px;"><%= PID%></td>
                     <% let endPage=0%>
@@ -52,9 +52,9 @@
                     <% if(PID==endPage){%>
                         <td>></td>
                     <%}else{%>
-                    <td><a href="/dqe?pageID=<%=parseInt(PID)+1%>">></a></td>
+                    <td><a href="/dqe/dqe?pageID=<%=parseInt(PID)+1%>">></a></td>
                     <%}%>
-                    <td><a href="/dqe?pageID=<%=endPage%>">>></a></td>
+                    <td><a href="/dqe/dqe?pageID=<%=endPage%>">>></a></td>
                 </tr>
             </table>      
         <%}%>
@@ -66,6 +66,6 @@
             alert("Please Enter Valid Query Your Query Have Error")
         </script>
     <%}%>    
-    <p style="text-align:center;"><a href="/homepage">Home Page</a></p>
+    <p style="text-align:center;"><a href="/homepage/homePage">Home Page</a></p>
 </body>
 </html>
