@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        span{
+            color:red;
+            font-size: small;
+        }
+    </style>
 </head>
 <body style="background-color: rgb(207, 255, 239);">
     <h3 style="text-align: center;">Registration Form</h3>
@@ -71,6 +77,23 @@
                 document.getElementById("genderMsg").style["fontSize"]="small"
                 cnt++;
             }
+            let emailRegex= /^\S+@\S+$/
+                if(email.value.trim()!=""){
+                    if(!emailRegex.test(email.value)){
+                        document.getElementById("emailMsg").innerHTML="Please Enter Proper Email ID!!";    
+                        cnt++;                        
+                    }else{
+                        document.getElementById("emailMsg").innerHTML="";
+                    }
+                }   
+                if(Contact.value.trim()!="") {
+                    if(isNaN(Contact.value.trim())||Contact.value.trim().length!=10){
+                        document.getElementById("ContactMsg").innerHTML="Please Enter Proper Contact Number!!";    
+                        cnt++;                        
+                    }else{
+                        document.getElementById("ContactMsg").innerHTML="";    
+                    }
+                } 
             if(cnt==0){
                 let fd = new URLSearchParams()            
                 fd.append("Fname",document.getElementById("Fname").value.trim())
