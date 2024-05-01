@@ -12,20 +12,30 @@
             <table align="center" style="height: 170px;width: 630px;">
                 <tr>                  
                     <th>First Name:</th>
-                    <td><input type="text" name="Fname" id="Fname"></td>
+                    <td><input type="text" name="Fname" id="Fname">
+                    <span id="FnameMsg"></span>
+                    </td>
                     <th>Last Name:</th>
-                    <td><input type="text" name="Lname" id="Lname"></td>
+                    <td><input type="text" name="Lname" id="Lname">
+                    <span id="LnameMsg"></span>
+                    </td>
                 </tr>
                 <tr>
                     <th>Email:</th>
-                    <td><input type="text" id="email" name="email"/></td>
+                    <td><input type="text" id="email" name="email"/>
+                    <span id="emailMsg"></span>
+                    </td>
                     <th>Contact No:</th>
-                    <td><input type="text" id="Contact" name="Contact"/></td>                    
+                    <td><input type="text" id="Contact" name="Contact"/>
+                    <span id="ContactMsg"></span>
+                    </td>                    
                 </tr>
                 <tr>
                     <th>Gender</th>
-                    <td><input type="radio" id="gender" name="gender" value="M"/>Male</td>
-                    <td><input type="radio" id="gender" name="gender" value="F"/>Female</td>
+                    <td><input type="radio" id="male" name="gender" value="M"/>Male
+                    <span id="genderMsg"></span>
+                    </td>
+                    <td><input type="radio" id="female" name="gender" value="F"/>Female</td>
                 </tr>
                 <tr>
                     <td colspan="4" style="text-align: center;"><div style="background-color: rgb(42, 59, 207); color:white; width: 100px;  border-color: antiquewhite; border-style: solid; border-width: 1px; border-radius: 5px; cursor: pointer;position: relative;left: 264px;" onclick="reg()">Submit</div></td>                    
@@ -37,30 +47,56 @@
     <p style="text-align: center;"><a id="link"></a></p>
     <script>
         async function reg(){
-            let fd = new URLSearchParams()
-            fd.append("Fname",document.getElementById("Fname").value)
-            fd.append("Lname",document.getElementById("Lname").value)
-            fd.append("email",document.getElementById("email").value)
-            fd.append("Contact",document.getElementById("Contact").value)
-            fd.append("gender",document.getElementById("gender").value)
-            let fetchPromise=await fetch("/",{
-                method:"post",
-                body:fd,
-                headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    }
-            }).then((response)=>{
-                return response.json()
+            const Fname=document.getElementById("Fname");
+            const Lname=document.getElementById("Lname");
+            const email=document.getElementById("email");
+            const Contact=document.getElementById("Contact");
+            const maleGender=document.getElementById("male");
+            const femaleGender=document.getElementById("female");
+            const reqArr=[{tag:Fname,msg:"First Name"},{tag:Lname,msg:"Last Name"},{tag:email,msg:"Email ID"},{tag:Contact,msg:"Contact No"}];
+            let cnt=0;            
+            reqArr.forEach((element)=>{
+                if(element.tag.value.trim()==''){
+                    document.getElementById(element.tag.id+"Msg").innerHTML="Please Enter "+element.msg
+                    document.getElementById(element.tag.id+"Msg").style.color="red"
+                    document.getElementById(element.tag.id+"Msg").style["fontSize"]="small"
+                    cnt++;
+                }else{
+                    document.getElementById(element.tag.id+"Msg").innerHTML=''
+                }
             })
-            if(fetchPromise.status==200){
-                console.log(fetchPromise.uid)
-                document.getElementById("link").innerHTML="Click Here to verification"
-                document.getElementById("link").setAttribute("href","http://localhost:3000/"+fetchPromise.random)
-            }else if(fetchPromise.status==201){
-                document.getElementById("link").innerHTML="User Is Allready Exists and Active Click Here and please Do Login !!"
-                document.getElementById("link").setAttribute("href","http://localhost:3000/login/login")
-            }else if(fetchPromise.status==202){
-                document.getElementById("link").innerHTML="User Is Allready Exists but inactive please check your mail and click on varification link !!"
+            if(!maleGender.checked&&!femaleGender.checked){
+                document.getElementById("genderMsg").innerHTML="Please select any gender"
+                document.getElementById("genderMsg").style.color="red"
+                document.getElementById("genderMsg").style["fontSize"]="small"
+                cnt++;
+            }
+            if(cnt==0){
+                let fd = new URLSearchParams()            
+                fd.append("Fname",document.getElementById("Fname").value.trim())
+                fd.append("Lname",document.getElementById("Lname").value.trim())
+                fd.append("email",document.getElementById("email").value.trim())
+                fd.append("Contact",document.getElementById("Contact").value.trim())
+                fd.append("gender",document.querySelector('input[name="gender"]:checked').value)
+                let fetchPromise=await fetch("/",{
+                    method:"post",
+                    body:fd,
+                    headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        }
+                }).then((response)=>{
+                    return response.json()
+                })
+                if(fetchPromise.status==200){
+                    console.log(fetchPromise.uid)
+                    document.getElementById("link").innerHTML="Click Here to verification"
+                    document.getElementById("link").setAttribute("href","http://localhost:3000/"+fetchPromise.random)
+                }else if(fetchPromise.status==201){
+                    document.getElementById("link").innerHTML="User Is Allready Exists and Active Click Here and please Do Login !!"
+                    document.getElementById("link").setAttribute("href","http://localhost:3000/login/login")
+                }else if(fetchPromise.status==202){
+                    document.getElementById("link").innerHTML="User Is Allready Exists but inactive please check your mail and click on varification link !!"
+                }
             }
         }
     </script>
