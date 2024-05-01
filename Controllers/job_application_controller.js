@@ -2,7 +2,7 @@ const url = require("url");
 const moment =require('moment');
 const mysql=require("mysql");
 const id=undefined
-var con=mysql.createConnection({
+let con=mysql.createConnection({
     host:"localhost",
     user:"root",
     password:"password",

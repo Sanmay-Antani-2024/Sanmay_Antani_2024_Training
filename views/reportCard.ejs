@@ -37,10 +37,10 @@
                 <th>practical</th>
                 <th>Theory</th>           
             </tr>
-            <% var total=[]%>
+            <% let total=[]%>
             <%for(let i=0;i<(s.length/6);i++){%>
                 <tr>
-                    <% var sum=0; %>
+                    <% let sum=0; %>
                     <td><%=s[i].subname%></td>                
                     <%for(let j=i;j<s.length;j=j+6){%>                    
                         <td><%=s[j].ObtainMarks%></td>

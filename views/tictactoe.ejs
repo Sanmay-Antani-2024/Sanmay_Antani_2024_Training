@@ -41,8 +41,8 @@
             function clicked(obj){
                 if(!sel.includes(obj.id)){
                     clickcnt++;                                    
-                    var cell=document.getElementById(obj.id);
-                    var pic=document.createElement('img');
+                    let cell=document.getElementById(obj.id);
+                    let pic=document.createElement('img');
                     if(clickcnt%2!=0){
                         pic.setAttribute("src","zero.jpeg");
                         cell.setAttribute("class","shun");
@@ -60,7 +60,7 @@
                 }
 
 
-                var pointcnt=0;
+                let pointcnt=0;
                 for(let i=0;i<2;i++){
                     for(let j=0;j<3;j++){
                         if(document.getElementById(row1[j]).getAttribute("class")==classes[i]){

@@ -37,19 +37,19 @@
                     
     
                 //add row
-                    var tabl=document.getElementById('tbl');                                            
-                    var row=document.createElement('tr');
+                    let tabl=document.getElementById('tbl');                                            
+                    let row=document.createElement('tr');
                     row.setAttribute("class","row");
                     tabl.appendChild(row);
-                    var cols=document.getElementsByClassName('collumns');
-                    var rows=document.getElementsByClassName('row');
-                    var cells=document.getElementsByClassName('cell');
-                    var colnums=cols.length;                       
-                    var cellnum=cells.length;
+                    let cols=document.getElementsByClassName('collumns');
+                    let rows=document.getElementsByClassName('row');
+                    let cells=document.getElementsByClassName('cell');
+                    let colnums=cols.length;                       
+                    let cellnum=cells.length;
     
                     for(let i=0;i<colnums;i++){
-                        var cellid=parseInt(i)+parseInt(1)+parseInt(cellnum);                                                    
-                        var cell=document.createElement('td');     
+                        let cellid=parseInt(i)+parseInt(1)+parseInt(cellnum);                                                    
+                        let cell=document.createElement('td');     
                         cell.setAttribute("onclick","clicked(this)"); 
                         cell.setAttribute("class","cell"); 
                         cell.setAttribute("id",cellid.toString());                                                                   
@@ -58,21 +58,21 @@
                     
                     //add column
     
-                    var rowes=document.getElementsByClassName("row");
-                    var numrows=rowes.length;
+                    let rowes=document.getElementsByClassName("row");
+                    let numrows=rowes.length;
                     cells=document.getElementsByClassName('cell');
                     cellnum=cells.length;
                     for(let i=0;i<numrows;i++){
                         if(i==0){
-                            var cellid=parseInt(i)+parseInt(1)+parseInt(cellnum);  
-                            var cell=document.createElement('td');                        
+                            let cellid=parseInt(i)+parseInt(1)+parseInt(cellnum);  
+                            let cell=document.createElement('td');                        
                             cell.setAttribute("class","cell collumns"); 
                             cell.setAttribute("onclick","clicked(this)");  
                             cell.setAttribute("id",cellid.toString());                       
                             rowes[i].appendChild(cell);
                         }else{
-                        var cellid=parseInt(i)+parseInt(1)+parseInt(cellnum);  
-                        var cell=document.createElement('td');                  
+                        let cellid=parseInt(i)+parseInt(1)+parseInt(cellnum);  
+                        let cell=document.createElement('td');                  
                         cell.setAttribute("onclick","clicked(this)");
                         cell.setAttribute("class","cell"); 
                         cell.setAttribute("id",cellid.toString());   
@@ -99,7 +99,7 @@
                         cells[i].style.opacity="100%";
                     }
                     randomId=Math.random() * (cellnum - 1) + 1;            
-                    var opac=parseInt(cellnum)+parseInt(10);
+                    let opac=parseInt(cellnum)+parseInt(10);
                     if(opac<80){
                         document.getElementById((Math.round(randomId)).toString()).style.opacity=(parseInt(cellnum)+parseInt(10)).toString()+"%";
                     }else{
@@ -115,10 +115,10 @@
             const intr=setInterval(countDown, 1000);   
                 setTimeout(gameOver,15000);
                 function countDown(){       
-                    var sec=document.getElementById("showTime");         
-                    var currsec=parseInt(sec.innerHTML);  
+                    let sec=document.getElementById("showTime");         
+                    let currsec=parseInt(sec.innerHTML);  
                     console.log(currsec);                 
-                    var newsec=parseInt(currsec-1);                       
+                    let newsec=parseInt(currsec-1);                       
                     sec.innerHTML=newsec.toString();            
                 }                        
                 function gameOver(){

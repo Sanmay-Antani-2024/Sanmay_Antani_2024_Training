@@ -10,7 +10,7 @@ const jwt=require('jsonwebtoken');
 const { error } = require('console');
 const cookieParser=require('cookie-parser')
 const PORT = 3000; 
-var con=mysql.createConnection({
+let con=mysql.createConnection({
     host:"localhost",
     user:"root",
     password:"password",

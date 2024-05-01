@@ -1,6 +1,6 @@
 const url = require("url");
 const mysql=require("mysql");
-var con=mysql.createConnection({
+let con=mysql.createConnection({
     host:"localhost",
     user:"root",
     password:"password",

@@ -1032,7 +1032,7 @@
             else if(pg==4){
                 let cnt=0
                 const formData = new URLSearchParams();
-                var checkLang = document.querySelectorAll('input[name=chkLang]:checked');
+                let checkLang = document.querySelectorAll('input[name=chkLang]:checked');
                 let checkRead=document.querySelectorAll('input[name=chkR]:checked')
                 let checkWrite=document.querySelectorAll('input[name=chkW]:checked')                
                 let checkSpeak=document.querySelectorAll('input[name=chkSpeak]:checked')                
@@ -1104,7 +1104,7 @@
             }else if(pg==5){
                 let cnt=0
                 const formData = new URLSearchParams();
-                var checkTechs = document.querySelectorAll('input[name=tech]:checked');
+                let checkTechs = document.querySelectorAll('input[name=tech]:checked');
                 let techs=[]
                 // let levels=[]
                 checkTechs.forEach((item,index,arr)=>{

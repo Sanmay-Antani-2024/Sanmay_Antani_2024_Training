@@ -1,6 +1,6 @@
 const url = require("url");
 const mysql=require("mysql");
-var con=mysql.createConnection({
+let con=mysql.createConnection({
     host:"localhost",
     user:"root",
     password:"password",
@@ -8,7 +8,7 @@ var con=mysql.createConnection({
 });
 function filter(req,res){
     const fullUrl = url.parse(req.url, true);
-    var curPage=fullUrl.query.pageID;
+    let curPage=fullUrl.query.pageID;
     let month=fullUrl.query.selMonth;    
     let stID=fullUrl.query.selSID;
     let sName=fullUrl.query.filterSname;

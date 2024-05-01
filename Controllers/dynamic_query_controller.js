@@ -1,11 +1,11 @@
 const url = require("url");
 const moment =require('moment');
 const mysql=require("mysql");
-var sql=" ";
-var sqlNoLimitCnt=0;
-var baseSql=" ";
+let sql=" ";
+let sqlNoLimitCnt=0;
+let baseSql=" ";
 const id=undefined
-var con=mysql.createConnection({
+let con=mysql.createConnection({
     host:"localhost",
     user:"root",
     password:"password",
@@ -34,7 +34,7 @@ function dqe_post(req,res){
 
 function dqe_get(req,res){     
     const fullUrl = url.parse(req.url, true)       
-    var curPage=fullUrl.query.pageID
+    let curPage=fullUrl.query.pageID
     if(curPage==undefined){
         curPage=1
     }

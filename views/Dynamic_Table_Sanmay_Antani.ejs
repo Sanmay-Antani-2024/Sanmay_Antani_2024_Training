@@ -13,36 +13,36 @@
         </style>
         <script>  
             function removeRow(){
-                var rows=document.getElementsByClassName('rows');
-                var numrows=rows.length;
+                let rows=document.getElementsByClassName('rows');
+                let numrows=rows.length;
                 if(numrows>2){
-                var tabl=document.getElementById('tbl');
-                var lchild=tabl.lastChild;
+                let tabl=document.getElementById('tbl');
+                let lchild=tabl.lastChild;
                 tabl.removeChild(lchild);                
                 }
             }         
             function removeCollumn(){
-                var cols=document.getElementsByClassName('columns');
-                var rows=document.getElementsByClassName('rows');
-                var numrows=rows.length;
-                var colnums=cols.length;
+                let cols=document.getElementsByClassName('columns');
+                let rows=document.getElementsByClassName('rows');
+                let numrows=rows.length;
+                let colnums=cols.length;
                 if(colnums>2){
                     for(i=0;i<numrows;i++){
-                        var lchild=rows[i].lastChild;
+                        let lchild=rows[i].lastChild;
                         rows[i].removeChild(lchild);                            
                     }
                 }
             }        
             function addRow(){               
-                var tabl=document.getElementById('tbl');  
-                var row=document.createElement('tr');
+                let tabl=document.getElementById('tbl');  
+                let row=document.createElement('tr');
                 row.setAttribute("class","rows");
                 tabl.appendChild(row);
-                var cols=document.getElementsByClassName('columns');
-                var colnums=cols.length;  
+                let cols=document.getElementsByClassName('columns');
+                let colnums=cols.length;  
                 // alert(colnums);             
                 for(let i=0;i<colnums;i++){                                       
-                    var cell=document.createElement('td');  
+                    let cell=document.createElement('td');  
                     cell.innerHTML='HI';  
                     cell.setAttribute("id","odd");                                  
                     row.appendChild(cell);
@@ -51,17 +51,17 @@
             }
             function addCollumn()
             {
-                var rowes=document.getElementsByClassName("rows");
-                var numrows=rowes.length;
+                let rowes=document.getElementsByClassName("rows");
+                let numrows=rowes.length;
                 for(let i=0;i<numrows;i++){
                     if(i==0){
-                        var cell=document.createElement('td');
+                        let cell=document.createElement('td');
                         cell.innerHTML='HI';
                         cell.setAttribute("class","columns");
                         cell.setAttribute("id","odd");
                         rowes[i].appendChild(cell);
                     }else{
-                    var cell=document.createElement('td');
+                    let cell=document.createElement('td');
                     cell.innerHTML='HI';
                     cell.setAttribute("id","odd");
                     rowes[i].appendChild(cell);
