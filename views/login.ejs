@@ -27,24 +27,32 @@
         </div>
         <script>
             async function verifyUser(){
-                let fd=new URLSearchParams()
-                fd.append("uname",document.getElementById("uname").value)
-                fd.append("pass",document.getElementById("pass").value)
-                let fetchPromise=await fetch("/login/login",{
-                    method:"post",
-                    body:fd,
-                    headers:{
-                        'Content-Type': 'application/x-www-form-urlencoded'
+                let cnt=0;
+                if(document.getElementById("uname").value.trim()==''){
+                    cnt++
+                    document.getElementById("msg").innerHTML+=" Please enter username "
+                } 
+
+                if(cnt==0){
+                    let fd=new URLSearchParams()
+                    fd.append("uname",document.getElementById("uname").value.trim())
+                    fd.append("pass",document.getElementById("pass").value.trim())
+                    let fetchPromise=await fetch("/login/login",{
+                        method:"post",
+                        body:fd,
+                        headers:{
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        }
+                    })
+                    .then((response)=>{
+                        return response.json()
+                    })
+                    if(fetchPromise.status==200){
+                        document.getElementById("msg").innerHTML=""   
+                        window.location.href="http://localhost:3000/homePage/homePage"
+                    }else{
+                        document.getElementById("msg").innerHTML="Incorrect UserName or password!!"
                     }
-                })
-                .then((response)=>{
-                    return response.json()
-                })
-                if(fetchPromise.status==200){
-                    document.getElementById("msg").innerHTML=""   
-                    window.location.href="http://localhost:3000/homePage/homePage"
-                }else{
-                    document.getElementById("msg").innerHTML="Incorrect UserName or password!!"
                 }
             }
         </script>
